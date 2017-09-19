@@ -1,0 +1,14 @@
+Fibonacci number : 55
+0	5	11	22	33	44	
+Factorial number: 6
+Rotate 1 time
+5	11	22	33	44	0	
+Rotate 2 times
+22	33	44	0	5	11	
+Rotate 5 times
+11	22	33	44	0	5	
+true
+false
+false
+true
+false
