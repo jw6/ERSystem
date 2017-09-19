@@ -1,7 +1,8 @@
-The byte is 2
+The int is 2
 The byte is 0
 Is this number even? true
 The quotient is 5.0
+The quotient is Infinity
 Is this array all even? false
 Is this array all even? true
 The average = 2.6666666666666665

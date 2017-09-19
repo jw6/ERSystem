@@ -51,10 +51,11 @@ class NumbersAtItsBest {
    * f(1,0) = throw IllegalArgumentException
    */
   public static double divide(double operandOne, double operandTwo) {
-    if(operandTwo == 0)
-      throw new java.lang.ArithmeticException("Divide by zero");
-
-    System.out.println("The quotient is " + operandOne/operandTwo);
+    try {
+      System.out.println("The quotient is " + operandOne/operandTwo);
+    } catch(IllegalArgumentException e ){
+      throw e;
+    }
     return operandOne/operandTwo;
   }
 
@@ -124,7 +125,7 @@ public class JavaLab1 {
     goodNumber.castToByte((short)10);
     goodNumber.isEven(4);
     goodNumber.divide(10, 2);
-    // goodNumber.divide(10, 0);
+    goodNumber.divide(10, 0);
     int[] array = {3, 4, 1};
     int[] array1 = {2, 2, 2, 4, 6};
     goodNumber.isAllEven(array);
