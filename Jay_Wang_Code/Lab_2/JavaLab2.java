@@ -115,9 +115,17 @@ class Lab {
 public class JavaLab2 {
   public static void main(String[] args) {
     Lab funStuff = new Lab();
-    System.out.println("Fibonacci number : " + funStuff.fibonacci(10));
+    System.out.println("Fibonacci number 10 is  " + funStuff.fibonacci(10));
+    System.out.println("Fibonacci number 0 is: " + funStuff.fibonacci(0));
+    System.out.println("Fibonacci number 3 is: " + funStuff.fibonacci(3));
+    System.out.println("Fibonacci number 5 is: " + funStuff.fibonacci(5));
+
     int[] array = {22, 11, 0, 5, 33, 44};
+    int[] array1 = {12, 21, 10, 3, 13, 64};
+
     funStuff.sort(array);
+    System.out.println();
+    funStuff.sort(array1);
 
     System.out.println("\nFactorial number: " + funStuff.factorial(3));
     System.out.println("Rotate 1 time");
