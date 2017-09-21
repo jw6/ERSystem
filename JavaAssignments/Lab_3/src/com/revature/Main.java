@@ -1,8 +1,8 @@
 package com.revature;
 import com.revature.*;
-import com.revature.abstracts.BatMan;
-import com.revature.abstracts.SpiderMan;
 import com.revature.abstracts.SuperHero;
+import com.revature.pojo.BatMan;
+import com.revature.pojo.SpiderMan;
 
 public class Main {
 	public static void main(String[] args) {
@@ -17,7 +17,7 @@ public class Main {
 		//    or change it from RuntimeException to Exception or vice versa
 		//    Can you change it to a different Exception?
 		// Answer: I guess not. it's more restrict in overriden method of subclass
-		// I don't think it's approriate to access parent class's method either 
+		// I don't think it's appropriate to access parent class's method either 
 		// remove or change exception
 		
 		//4. Catch the Exceptions, add a finally block, call a method from the catch block

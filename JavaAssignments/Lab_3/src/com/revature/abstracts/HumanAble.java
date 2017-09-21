@@ -1,4 +1,4 @@
-package com.revature.pojo;
+package com.revature.abstracts;
 
 public interface HumanAble {
 	int legs = 2;
@@ -8,4 +8,5 @@ public interface HumanAble {
 		System.out.println("Super heroes are good guys " + goodGuy);
 	}
 	void talk();
+	boolean isRich();
 }

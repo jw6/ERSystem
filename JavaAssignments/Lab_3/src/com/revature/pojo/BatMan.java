@@ -1,9 +1,10 @@
-package com.revature.abstracts;
+package com.revature.pojo;
 
+import com.revature.abstracts.HumanAble;
+import com.revature.abstracts.SuperHero;
 import com.revature.exceptions.AttitudeProblemException;
 import com.revature.exceptions.MakeItYourOwnException;
 import com.revature.exceptions.TooRichProblemException;
-import com.revature.pojo.HumanAble;
 
 public class BatMan extends SuperHero implements HumanAble{
 	boolean isFlyAbout = false;
@@ -49,12 +50,12 @@ public class BatMan extends SuperHero implements HumanAble{
 	
 
 	@Override
-	boolean isFlyAbout() {
+	public boolean isFlyAbout() {
 		return this.isFlyAbout;
 	}
 
 	@Override
-	boolean isRich() {
+	public boolean isRich() {
 		return this.isRich;
 	}
 

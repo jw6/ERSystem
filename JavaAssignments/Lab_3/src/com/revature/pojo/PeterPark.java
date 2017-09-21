@@ -1,4 +1,4 @@
-package com.revature.abstracts;
+package com.revature.pojo;
 
 public class PeterPark extends SpiderMan {
 	String name = "Peter Park";

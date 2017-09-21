@@ -20,9 +20,9 @@ public abstract class SuperHero {
 		System.out.println("Super heroes are also humans");
 	}
 
-	abstract boolean isFlyAbout();
+	public abstract boolean isFlyAbout();
 	
-	abstract boolean isRich();
+	public abstract boolean isRich();
 
 	@Override
 	public String toString() {

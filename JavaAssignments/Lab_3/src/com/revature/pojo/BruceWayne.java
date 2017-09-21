@@ -1,4 +1,4 @@
-package com.revature.abstracts;
+package com.revature.pojo;
 
 public class BruceWayne {
 	String name = "Bruce Wayne";
