@@ -26,7 +26,7 @@ public class MainClass {
 		System.out.println(myArrays1[2]);
 		//java.lang.ArrayIndexOutOfBoundsException: 4
 		//Unchecked
-		System.out.println(myArrays1[4]);
+//		System.out.println(myArrays1[4]);
 		// 2D
 		
 		int[][] my2dArray = new int[2][3];
@@ -34,6 +34,12 @@ public class MainClass {
 		int[][] my2dArray2 = new int[2][];
 		int[][] my2dArray3 = new int[][] {{7, 2}, {24, 9}};
 		int my2dArray4[][] = new int[][]{{7, 2}, {24, 9}};
+		
+		for(int i = 0; i < my2dArray1.length; i++) {
+			for(int j = 0; j < my2dArray1[i].length; j++) {
+				System.out.println(my2dArray1[i][j]);
+			}
+		}
 	}
 		
 	public void primitives() {
