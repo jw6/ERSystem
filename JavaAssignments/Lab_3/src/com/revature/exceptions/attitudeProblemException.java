@@ -1,7 +1,7 @@
 package com.revature.exceptions;
 
-public class attitudeProblemException extends RuntimeException {
-	public attitudeProblemException() {
+public class AttitudeProblemException extends RuntimeException {
+	public AttitudeProblemException() {
 		System.out.println("Just making attitude a unchecked exception");
 	}
 }

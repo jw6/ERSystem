@@ -1,8 +1,8 @@
 package com.revature.abstracts;
 
-import com.revature.exceptions.attitudeProblemException;
-import com.revature.exceptions.makeItYourOwnException;
-import com.revature.exceptions.tooRichProblemException;
+import com.revature.exceptions.AttitudeProblemException;
+import com.revature.exceptions.MakeItYourOwnException;
+import com.revature.exceptions.TooRichProblemException;
 import com.revature.pojo.HumanAble;
 
 public class SpiderMan extends SuperHero implements HumanAble{
@@ -14,24 +14,24 @@ public class SpiderMan extends SuperHero implements HumanAble{
 		System.out.println("My spider sense is tingling");
 	}
 	
-	public void beingSuperHero() throws attitudeProblemException {
+	public void beingSuperHero() throws AttitudeProblemException {
 		if(isSuperHero) {
-			throw new attitudeProblemException();
+			throw new AttitudeProblemException();
 		}
 	}
 	
 	public void equiments() {
 		if(isRich) {
 			try {
-				throw new tooRichProblemException();
-			} catch (tooRichProblemException e) {
+				throw new TooRichProblemException();
+			} catch (TooRichProblemException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else {
 			try {
-				throw new makeItYourOwnException();
-			} catch (makeItYourOwnException e ) {
+				throw new MakeItYourOwnException();
+			} catch (MakeItYourOwnException e ) {
 				e.printStackTrace();
 			}
 		}

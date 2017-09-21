@@ -1,8 +1,8 @@
 package com.revature.abstracts;
 
-import com.revature.exceptions.attitudeProblemException;
-import com.revature.exceptions.makeItYourOwnException;
-import com.revature.exceptions.tooRichProblemException;
+import com.revature.exceptions.AttitudeProblemException;
+import com.revature.exceptions.MakeItYourOwnException;
+import com.revature.exceptions.TooRichProblemException;
 import com.revature.pojo.HumanAble;
 
 public class BatMan extends SuperHero implements HumanAble{
@@ -18,21 +18,21 @@ public class BatMan extends SuperHero implements HumanAble{
 		System.out.println("Batman's enemy is " + enemyName);
 	}
 	
-	public void beingBatMan() throws attitudeProblemException{
-		throw new attitudeProblemException();
+	public void beingBatMan() throws AttitudeProblemException{
+		throw new AttitudeProblemException();
 	}
 	
 	public void equiment() {
 		if(isRich) {
 			try {
-				throw new tooRichProblemException();
-			} catch (tooRichProblemException e) {
+				throw new TooRichProblemException();
+			} catch (TooRichProblemException e) {
 				e.printStackTrace();
 			}
 		} else {
 			try {
-				throw new makeItYourOwnException();
-			} catch (makeItYourOwnException e) {
+				throw new MakeItYourOwnException();
+			} catch (MakeItYourOwnException e) {
 				e.printStackTrace();
 			}
 		}
