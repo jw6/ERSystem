@@ -1,4 +1,4 @@
-package com.revature;
+ package com.revature;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -40,7 +40,7 @@ public class MainClass {
 		List<String> myStrings = new ArrayList<String>();
 		myStrings.add("steve");
 //		myStrings.add(10);
-		//must be string becasue the Generic <String> is restricting, allowing 
+		//must be string because the Generic <String> is restricting, allowing 
 		
 //		setExample();
 //		mapExample();
@@ -71,7 +71,7 @@ public class MainClass {
 		myNumbers.add(11);
 		myNumbers.add(15);
 		myNumbers.add(10);
-		myNumbers.sort(null);
+//		myNumbers.sort(null);
 		
 		//Collection with the s at the end, is apart of the Collections framework
 		//Userful classes with a bunch of static methods
@@ -94,15 +94,15 @@ public class MainClass {
 		myMap.put(10, "Same");
 		
 		for(String s : myMap.values()) {
-			System.out.println("myMap.Value " + s);
+			System.out.println("myMap.values() " + s);
 		}
 		
 		for(Integer i : myMap.keySet()) {
-			System.out.println("myMap.keySet " + i);
+			System.out.println("myMap.keySet() " + i);
 		}
 		
 		for(Integer i : myMap.keySet()) {
-			System.out.println("myMap.keySet " + i);
+			System.out.println("myMap.keySet() " + i);
 			System.out.println("myMap.get() " + myMap.get(i));
 		}
 		
