@@ -146,11 +146,23 @@ return
 --7.1 Inner
 --Create an inner join that joins customers and orders and specifies the name of the customer
 --and the invoiceid
+/
+SELECT c.firstname || ' '|| c.lastname AS "Customer", i.invoiceid AS "Invoice ID"
+FROM CUSTOMER c
+INNER JOIN INVOICE i ON c.customerid = i.customerid;
+/
 --7.2 Outer
 --Create an outer join that joins the customer and invoice table, specifying the CustomerId,
---firstname, lastname, invoiceId, and table
+--firstname, lastname, invoiceId, and total
+/
+SELECT c.customerid AS "Customer ID", c.firstname || ' '|| c.lastname AS "Name", i.invoiceid AS "Invoice",
+i.total AS "Total"
+FROM CUSTOMER c
+FULL OUTER JOIN INVOICE i ON c.customerid = i.customerid;
+/
 --7.3 Right
 --Create a right join that joins album and artist specifying artist name and titles
+
 --7.4 Cross
 --Create a cross join that joins album and artist and sorts by artist name in the ascending order
 --7.5 Self
