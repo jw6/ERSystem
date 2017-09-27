@@ -135,7 +135,7 @@ public class JavaLab2 {
     System.out.println("Rotate 5 times");
     funStuff.rotateLeft(array, 5);
 
-    System.out.println(funStuff.balancedBrackets("{(a,b)}"));
+    System.out.println(funStuff.balancedBrackets("[{(a,b)}]"));
     System.out.println(funStuff.balancedBrackets("{(a},b)"));
     System.out.println(funStuff.balancedBrackets("{)(a,b}"));
     System.out.println(funStuff.balancedBrackets("{}()[]"));
