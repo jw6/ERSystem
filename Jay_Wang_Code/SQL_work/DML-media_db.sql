@@ -24,3 +24,29 @@ RIGHT JOIN role_type rt  ON ar.ROLE_ID = rt.ROLE_ID;
 --Show where actors have the same years in media
 SELECT act_name as "Actor Name", act_years_in_media as "Years"
 FROM actor;
+
+
+--Functions
+--2 types of system defined functions;
+    -- Scalar
+    -- Aggregate
+--ave
+--max
+--min
+--sum count 
+    
+SELECT * FROM actor;
+
+--Jerry is repeated several, sum all Jerrys years in media
+SELECT act_name SUM(ACT_YEARS_IN_MEDIA)
+FROM ACTOR
+GROUP BY act_name; --GROUP BY with aggregate functions
+HAVING SUM(ACT_YEARS_IN_MEDIA) > 20;
+--Now, all jerry and years_in_media > 20
+--HAVING vs WHERE clause;
+--because the WHERE keyword could not be used with aggregate funtions
+
+--SQL scalar functions return a gingle value, based on the input value.
+SELECT UPPER(act_name) FROM ACTOR;
+SELECT UPPER(act_name), ROUND(ACT_YEARS_IN_MEDIA) FROM ACTOR;
+SELECT UPPER(act_name_, LENGTH(act_name_), ROUND(ACT_YEARS_IN_MEDIA) FROM ACTOR;

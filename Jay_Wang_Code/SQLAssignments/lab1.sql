@@ -111,36 +111,269 @@ SELECT get_current_time() FROM dual;
 /
 --Create a function taht returns the length of a mediatype from the mediatype table
 /
-CREATE OR REPLACE FUNCTION get_length
-return 
+CREATE OR REPLACE FUNCTION get_mediatype_length 
+(
+  mediatype_id IN NUMBER 
+) 
+RETURN NUMBER AS 
+media_name_length NUMBER :=0;
+BEGIN
+  SELECT LENGTH(name) INTO media_name_length 
+  FROM mediatype 
+  WHERE mediatypeid = mediatype_id;
+  RETURN media_name_length;
+END get_mediatype_length;
+/
+SELECT get_mediatype_length(2) FROM dual;
+/
 --3.2 System Defined Aggregate Functions
---Create a function that returns the avearge total of all invoices
+--Create a function that returns the average total of all invoices
+CREATE OR REPLACE FUNCTION average_of_total_invoice
+RETURN NUMBER AS average NUMBER(8, 2);
+BEGIN
+    SELECT AVG(total) INTO average FROM INVOICE;
+    RETURN average;
+END average_of_total_invoice;
+/
+SELECT average_of_total_invoice FROM dual;
+/
 --Create a function that returns the most expensive tracks
-
+CREATE OR REPLACE FUNCTION most_expensive_track
+RETURN NUMBER AS high_price NUMBER(8,2);
+BEGIN
+    SELECT MAX(unitprice) INTO high_price FROM TRACK;
+    RETURN high_price;
+END most_expensive_track;
+/
+SELECT most_expensive_track FROM dual;
+/
 --3.3 User define scalar function
 --Create a function that returns the average price of invoiceline items in the invoiceline table
-
+CREATE OR REPLACE FUNCTION average_price_invoiceline(invoice_number IN NUMBER)
+RETURN NUMBER AS average NUMBER(8,2);
+BEGIN
+    SELECT AVG(unitprice * quantity) INTO average
+    FROM INVOICELINE
+    WHERE invoiceid = invoice_number;
+    RETURN average;
+END average_price_invoiceline;
+/
+SELECT average_price_invoiceline(1) FROM dual;    
+/
 --3.4 User defined table valued functions
 --Create a function that returns all employees who are born after 1968
+create or replace function age_finder(minimum_age IN NUMBER)
+RETURN sys_refcursor AS employ_list_age sys_refcursor
+BEGIN 
 
 --4.0 Stored Procedure
 --4.1 Basic stored procedure
 --Create stored procedure that selects the first and last names of all the employees
+create or replace PROCEDURE get_first_last_name AS CURSOR emp_cur IS
+    SELECT firstname, lastname FROM EMPLOYEE;
+    emp_rec emp_cur%rowtype;
+BEGIN
+FOR emp_rec IN emp_cur
+    LOOP
+        DBMS_OUTPUT.PUT_LINE(emp_rec.firstname || ' '||emp_rec.lastname);
+    END LOOP;
+END get_first_last_name;
+/
+
+exec get_first_last_name();
 --4.2 Store procedure input paramets 
 --Create a stored procedure that updates the personal information of an employee
+/
+create or replace PROCEDURE update_info
+    (
+      p_employeeid IN NUMBER ,
+      p_lastname   IN VARCHAR2 ,
+      p_firstname  IN VARCHAR2 ,
+      p_title      IN VARCHAR2 DEFAULT NULL ,
+      p_reportsto  IN NUMBER DEFAULT NULL ,
+      p_birthdate  IN DATE DEFAULT NULL ,
+      p_hiredate   IN DATE DEFAULT NULL ,
+      p_address    IN VARCHAR2 DEFAULT NULL ,
+      p_city       IN VARCHAR2 DEFAULT NULL ,
+      p_state      IN VARCHAR2 DEFAULT NULL ,
+      p_country    IN VARCHAR2 DEFAULT NULL ,
+      p_postalcode IN VARCHAR2 DEFAULT NULL ,
+      p_phone      IN VARCHAR2 DEFAULT NULL ,
+      p_fax        IN VARCHAR2 DEFAULT NULL ,
+      p_email      IN VARCHAR2 DEFAULT NULL 
+    )
+  IS
+  BEGIN
+    UPDATE EMPLOYEE
+    SET 
+      FIRSTNAME      = p_firstname ,
+      LASTNAME       = p_lastname ,
+      TITLE          = p_title ,
+      REPORTSTO      = p_reportsto ,
+      BIRTHDATE      = p_birthdate ,
+      HIREDATE       = p_hiredate ,
+      ADDRESS        = p_address ,
+      CITY           = p_city ,
+      STATE          = p_state ,
+      COUNTRY        = p_country ,
+	  POSTALCODE     = p_postalcode ,
+      PHONE          = p_phone ,
+      FAX            = p_fax ,
+      EMAIL          = p_email
+    WHERE EMPLOYEEID = p_employeeid;
+  END;
+/
 --Create a stored procedure that returns the managers of an employee
+create or replace PROCEDURE get_manager_info
+(
+    employee_id IN NUMBER
+)
+AS manager_name VARCHAR(50);
+BEGIN
+    SELECT firstname || ' '|| lastname INTO manager_name
+    FROM EMPLOYEE WHERE employee_id = employeeid;   
+    DBMS_OUTPUT.PUT_LINE(manager_name);
+END get_manager_info;
+/
+    
 --4.3 Store procedure output parameters
+-- returns the name and company of a customer
+create or replace PROCEDURE get_customer_name_company 
+(
+  customer_id       IN NUMBER, 
+  customer_name     OUT VARCHAR2,
+  customer_company  OUT VARCHAR2 
+) AS 
+BEGIN
+  SELECT firstname || ' ' || lastname, company INTO customer_name, customer_company
+  FROM customer 
+  WHERE customerid = customer_id;
+END get_customer_name_company;
+/
+DECLARE
+	l_name VARCHAR2(50);
+	l_company VARCHAR2(50);
+BEGIN
+	get_customer_name_company(1, l_name, l_company);
+	dbms_output.put_line(l_name || ' ' || l_company);
+END;
+/
 
 --5.0 Transactions
---Create a transaction that givena invoiced will delete that invoice(There may be constraints
+--Create a transaction that given a invoiceid will delete that invoice(There may be constraints
 --that rely on this, find out how to resolve them
+create or replace PROCEDURE delete_invoice 
+(
+  invoice_id IN NUMBER 
+) AS 
+BEGIN
+  DELETE FROM invoiceline 
+  WHERE invoiceid = invoice_id;
+  
+  DELETE FROM invoice       
+  WHERE invoiceid = invoice_id;
+END DELETE_invoice;
+/
+
+execute delete_invoice(1);
+/
+--create a transaction nested within a stored procedure that inserts a new record  in the
+--customer  table
+create or replace PROCEDURE insert_customer
+(
+      customer_id    IN NUMBER,
+      first_name     IN VARCHAR2,
+      last_name      IN VARCHAR2,
+      p_company      IN VARCHAR2 DEFAULT NULL,
+      p_address      IN VARCHAR2 DEFAULT NULL,
+      p_city         IN VARCHAR2 DEFAULT NULL,
+      p_state        IN VARCHAR2 DEFAULT NULL,
+      p_country      IN VARCHAR2 DEFAULT NULL,
+      postal_code    IN VARCHAR2 DEFAULT NULL,
+      p_phone        IN VARCHAR2 DEFAULT NULL,
+      p_fax          IN VARCHAR2 DEFAULT NULL,
+      p_email        IN VARCHAR2,
+      support_rep_id IN NUMBER DEFAULT NULL
+)
+  IS
+  BEGIN
+    INSERT
+    INTO customer
+      (
+        customerid,
+        firstname,
+        lastname,
+        company,
+        address,
+        city,
+        state,
+        country,
+        postalcode,
+        phone,
+        fax,
+        email,
+        supportrepid
+      )
+      VALUES
+      (
+        customer_id,
+        first_name,
+        last_name,
+        p_company,
+        p_address,
+        p_city,
+        p_state,
+        p_country,
+        postal_code,
+        p_phone,
+        p_fax,
+        p_email,
+        support_rep_id
+      );
+  END;
+/
 
 --6.0 Triggers
 --6.1 
 --Create an after insert trigger on the employee table fired after a new record is inserted
 --into the table
+create or replace TRIGGER employee_insert_trigger
+AFTER INSERT ON employee 
+FOR EACH ROW
+BEGIN
+  IF :new.hiredate IS NULL THEN
+      dbms_output.put_line('No hiredate entered for ' || :new.firstname || ' ' || :new.lastname);
+  END IF;
+END;
+/
+INSERT INTO employee VALUES (10, 'NoInfo', 'paul', NULL, NULL, NULL,
+      NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+commit;
+
 --Create an after update trigger on the album table that fires after a row is inserted in the table
+create or replace TRIGGER album_update_trigger
+AFTER UPDATE ON album 
+FOR EACH ROW
+BEGIN
+  IF :new.title <> :old.title THEN
+      dbms_output.put_line('old title: ' || :old.title || ' new title: ' || :new.title);
+  END IF;
+END;
+/
+UPDATE album SET title='Beatles old albums' WHERE albumid=1;
+commit;
+/
+
 --Create an after delete trigger on the customer table that fires after a row is deleted from the table
+create or replace TRIGGER customer_delete_trigger
+AFTER DELETE ON customer 
+FOR EACH ROW
+BEGIN
+  dbms_output.put_line('Dropped customer ' || :old.firstname || ' ' || :old.lastname);
+END;
+/
+DELETE FROM customer WHERE customerid=62;
+commit;
 
 --7.0 Joins
 --7.1 Inner
@@ -162,11 +395,24 @@ FULL OUTER JOIN INVOICE i ON c.customerid = i.customerid;
 /
 --7.3 Right
 --Create a right join that joins album and artist specifying artist name and titles
-
+/
+SELECT ar.name AS "Artist", al.title AS "Title"
+FROM ALBUM al
+RIGHT JOIN ARTIST ar ON al.artistid = ar.artistid;
+/
 --7.4 Cross
 --Create a cross join that joins album and artist and sorts by artist name in the ascending order
+/
+SELECT *
+FROM ARTIST ar
+CROSS JOIN ALBUM al
+ORDER BY ar.name ASC;
+/
 --7.5 Self
 --Perform a self-join on the employee table, joining on the reportsto column
-
+SELECT *
+FROM EMPLOYEE e1
+LEFT JOIN EMPLOYEE e2 ON e1.reportsto = e2.reportsto;
+/
 --9.0
 --make it .bak file

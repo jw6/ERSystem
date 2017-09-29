@@ -1,0 +1,15 @@
+--DML
+
+--Insert into flash_card
+INSERT INTO flash_card VALUES(1, 'What is your favorite color', 'java');
+INSERT INTO flash_card VALUES(2, 'What is life', '42');
+INSERT INTO flash_card VALUES(3, 'Is this a question', 'sure');
+
+INSERT INTO flash_card VALUES(55, '55!', '55!');
+
+--Partial Insert
+INSERT INTO flash_card(FC_QUESTION, FC_ANSWER) VALUES('does this trigger work?', 'hopefully');
+
+INSERT INTO flash_card VALUES(7, '55!', '55!');
+
+SELECT * FROM FLASH_CARD;
