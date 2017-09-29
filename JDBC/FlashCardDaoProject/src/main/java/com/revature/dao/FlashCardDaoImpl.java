@@ -1,5 +1,6 @@
 package com.revature.dao;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -9,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.revature.domain.FlashCard;
+
+import oracle.jdbc.OracleTypes;
 
 public class FlashCardDaoImpl implements Dao{
 	
@@ -72,6 +75,31 @@ public class FlashCardDaoImpl implements Dao{
 		return flashCards;
 	}
 
+	@Override
+	public List<FlashCard> retrieveAllFlashCards() {
+		
+		List<FlashCard> fcList = new ArrayList<>();
+			try (Connection connect =  DriverManager.getConnection(url, username, password);) {
+				
+				String getFCbyStoredProc = "{call get_all_fc_procedure(?)}";
+				
+				CallableStatement cs = connect.prepareCall(getFCbyStoredProc);
+				cs.registerOutParameter(1, OracleTypes.CURSOR);
+				
+				int numRow = cs.executeUpdate();
+				System.out.println(numRow + " effected");
+				
+				ResultSet rs = (ResultSet) cs.getObject(1);
+				while(rs.next()){
+					fcList.add(new FlashCard(rs.getInt(1), rs.getString(2), rs.getString(3)));
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		return fcList;
+	}
+	
 	@Override
 	public FlashCard getFlashCardById(int id) {
 		return null;

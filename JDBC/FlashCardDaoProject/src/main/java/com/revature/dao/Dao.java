@@ -15,9 +15,13 @@ public interface Dao {
 	public List<FlashCard> getAllFlashCard();
 	public FlashCard getFlashCardById(int id);
 	public FlashCard getFlashCardByQuestion(String question);
+	
+	//CallableStatement with Cursor
+	public List<FlashCard> retrieveAllFlashCards();
 	//UPDATE
 	public int updateFlashCard(FlashCard fc);
 	
 	//DELETE
 	public int deleteFlashCard(FlashCard fc);
+	
 }
