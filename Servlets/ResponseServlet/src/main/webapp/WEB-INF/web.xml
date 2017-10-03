@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  <display-name>ResponseServlet</display-name>
+
+	<!-- List of Servlets -->
+	<servlet>
+		<servlet-name>Print</servlet-name>
+		<servlet-class>com.revature.servlet.DirectResponseServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>fVSr</servlet-name>
+		<servlet-class>com.revature.servlet.ForwardVsRedirectServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Login</servlet-name>
+		<servlet-class>com.revature.servlet.LoginServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>life</servlet-name>
+		<servlet-class>com.revature.servlet.LifeCycleServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<!-- Mappings of Servlets -->
+	<servlet-mapping>
+		<servlet-name>Print</servlet-name>
+		<url-pattern>/print</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>fVSr</servlet-name>
+		<url-pattern>/forwardVsRedirect</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Login</servlet-name>
+		<url-pattern>/login</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>life</servlet-name>
+		<url-pattern>/lifeCycle</url-pattern>
+	</servlet-mapping>
+	
+</web-app>
