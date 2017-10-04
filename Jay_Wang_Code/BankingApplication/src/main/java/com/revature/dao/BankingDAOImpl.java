@@ -79,7 +79,7 @@ public class BankingDAOImpl implements BankingDAO {
 	public int performTransaction(BankTransaction bt) {
 		
 		try(Connection conn = ConnectionUtil.getConnection();){
-			conn.setAutoCommit(false);
+//			conn.setAutoCommit(false);
 			//fetch current balance of the account
 			String sql1 = "Select ba_balance FROM bank_account  WHERE ba_id = ?";
 			PreparedStatement ps = conn.prepareStatement(sql1);
@@ -107,7 +107,7 @@ public class BankingDAOImpl implements BankingDAO {
 			cs.setInt(3, bt.getTransactionType());
 			cs.execute();		
 			
-			postTransactionBalance(1);
+			postTransactionBalance(bt.getBankAccountID());
 			
 			}catch(SQLException e) {
 			e.printStackTrace();

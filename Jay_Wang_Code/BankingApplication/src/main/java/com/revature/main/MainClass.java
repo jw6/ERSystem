@@ -1,8 +1,10 @@
 package com.revature.main;
 
+import java.util.Date;
 import java.util.Scanner;
 
 import com.revature.exceptions.UserInfoException;
+import com.revature.models.BankTransaction;
 import com.revature.models.BankUser;
 import com.revature.models.UserLoginInfo;
 import com.revature.service.Service;
@@ -10,6 +12,11 @@ import com.revature.service.Service;
 public class MainClass {
 	private static Scanner sc = new Scanner(System.in);
 	private static Service service = new Service();
+	private BankTransaction bankTransaction;
+	private final static String screenMessage = "What would you like to do?\n"
+											+ "[1]Deposit\n" 
+											+ "[2]Withdrawal\n"
+											+ "[0]Exit";
 	
 	public static void main(String[] args) {
 		System.out.println("Welcome to Virtual Bank!");
@@ -59,16 +66,29 @@ public class MainClass {
 	}
 	
 	public void mainMenu() {
-		int exit = 0;
+		int exit = 1;
 		System.out.println("Enter your User ID, first name and last name to view account and balance");
 		int bankUserID = sc.nextInt();
 		String firstName = sc.next();
 		String lastName = sc.next();
 		BankUser user = new BankUser(bankUserID, firstName, lastName);
 		service.getBankAccountByUser(user);
-		while(exit == 0) {
-			System.out.println("Enter your Account ID to Proceed");
-//			int accountID = 
+		while(exit != 0) {
+			System.out.println(screenMessage);
+			int option = sc.nextInt();
+			if(option == 1) {
+				System.out.println("Enter your account ID and amount to continue\t");
+				int accountID = sc.nextInt();
+				double amount = sc.nextDouble();
+				bankTransaction = new BankTransaction(bankUserID, accountID, option, amount, new Date());
+				service.performTransaction(bankTransaction);
+			} else if (option == 2) {
+				System.out.println("Enter your account ID and amount to continue\t");
+				int accountID = sc.nextInt();
+				double amount = sc.nextDouble();
+				bankTransaction = new BankTransaction(bankUserID, accountID, option, amount, new Date());
+				service.performTransaction(bankTransaction);
+			}
 		}
 	}
 }
