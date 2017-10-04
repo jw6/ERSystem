@@ -13,6 +13,7 @@ import com.revature.exceptions.InvalidOperationException;
 import com.revature.models.BankAccount;
 import com.revature.models.BankTransaction;
 import com.revature.models.BankUser;
+import com.revature.models.RegisterUser;
 import com.revature.utils.ConnectionUtil;
 
 public class BankingDAOImpl implements BankingDAO {
@@ -20,14 +21,19 @@ public class BankingDAOImpl implements BankingDAO {
 	public static void main(String[] args) {
 		BankingDAOImpl bank = new BankingDAOImpl();
 //		bank.userLogin("jwang", "jw123");
-		
-		BankTransaction bt = new BankTransaction(1, 3, 1, 100, new Date());
-		System.out.println(bt.toString());
-		
- 		bank.performTransaction(bt);
-		
+//		
+//		BankTransaction bt = new BankTransaction(1, 3, 1, 100, new Date());
+//		System.out.println(bt.toString());
+//		
+// 		bank.performTransaction(bt);
+//		
 //		bank.performTransaction(8,112.4,1);
+//		
+		RegisterUser client = new RegisterUser("Ryan", "Giggs", "efisher", "ef123");
+		System.out.println(client.toString());
 		
+		System.out.println(bank.getBankUserID(client));
+//		bank.register(client);
 	}	
 
 	@Override
@@ -134,35 +140,54 @@ public class BankingDAOImpl implements BankingDAO {
 		}
 	}
 	
-//	public void performTransaction(int baID, double amount, int type) {
-//		
-//		try(Connection conn = ConnectionUtil.getConnection();){
-//			String sql = "{CALL make_transaction(?, ?, ?)}";
-//			
-//			CallableStatement cs = conn.prepareCall(sql);
-//			cs.setInt(1, baID);
-//			cs.setDouble(2, amount);
-//			cs.setInt(3, type);
-//			cs.execute();
-//			System.out.println("test");
-//			}catch(SQLException e) {
-//			e.printStackTrace();
-//		}
-//	}
-	
-
 	@Override
-	public boolean transactionOnRecord() {
-		return false;
+	public BankUser register(RegisterUser user) {
+		BankUser bu = new BankUser();
+		try(Connection conn = ConnectionUtil.getConnection();) {
+			String sql = "INSERT INTO bank_user(u_fn, u_ln, u_username, u_password) VALUES(?,?,?,?)";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, user.getFirstName());
+			ps.setString(2, user.getLastName());
+			ps.setString(3, user.getUsername());
+			ps.setString(4, user.getPassword());
+			ps.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return bu;
 	}
 
 	@Override
-	public void transactionHistory() {
-		
+	public int getBankUserID(RegisterUser user) {
+		int BankUserID = 0;
+		try(Connection conn = ConnectionUtil.getConnection();){
+			conn.setAutoCommit(false);
+			String sql = "SELECT u_id FROM bank_user WHERE u_username = ? AND u_password = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, user.getUsername());
+			ps.setString(2, user.getPassword());
+			
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				BankUserID = rs.getInt("u_id");
+			}
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return BankUserID;
 	}
 
 	@Override
-	public BankUser registerUser(String firstName, String lastName, String username, String password) {
-		return null;
+	public void createAccount(int BankUserID) {
+		try(Connection conn = ConnectionUtil.getConnection()) {
+			String sql = "INSERT INTO bank_account(u_id) VALUES(?)";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, BankUserID);
+			ps.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }
