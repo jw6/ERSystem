@@ -10,12 +10,11 @@ public class BankUser {
 		super();
 	}
 
-	public BankUser(int bankUserID, String firstName, String lastName, double balance) {
+	public BankUser(int bankUserID, String firstName, String lastName) {
 		super();
 		this.bankUserID = bankUserID;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.balance = balance;
 	}
 
 	public int getBankUserID() {
@@ -52,7 +51,7 @@ public class BankUser {
 
 	@Override
 	public String toString() {
-		return "BankUser [bankUserID=" + bankUserID + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", balance=" + balance + "]";
+		return "User ID:\t" + bankUserID + ", First Name:\t" + firstName + ", Last Name:\t" + lastName
+				+ ", Current Balance:\t" + "$" + balance;
 	}
 }

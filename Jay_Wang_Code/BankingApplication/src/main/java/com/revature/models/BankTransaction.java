@@ -10,7 +10,7 @@ public class BankTransaction {
 	private int		transactionType;
 	
 	private double	transactionAmount;
-	private Date		transacationDate;
+	private Date		transactionDate;
 	
 	/*
 	 * Use Singleton DP to create a enum type
@@ -37,31 +37,36 @@ public class BankTransaction {
 	public BankTransaction() {
 		super();
 	}
-	public BankTransaction(int bankAccountID, int transactionType, double transactionAmount, Date transacationDate) {
+	public BankTransaction(int bankAccountID, int transactionType, double transactionAmount, Date transactionDate) {
 		this.transactionID = -1;
 		this.bankAccountID = bankAccountID;
 		this.transactionType = transactionType;
 		this.transactionAmount = transactionAmount;
-		this.transacationDate = transacationDate;
+		this.transactionDate = transactionDate;
 	}
 	
 	public BankTransaction(int transactionID, int bankAccountID, int transactionType, double transactionAmount,
-			Date transacationDate) throws InvalidOperationException{
+			Date transactionDate) {
 		super();
 		this.transactionID = transactionID;
 		this.bankAccountID = bankAccountID;
-		switch(transactionType) {
-		case 1:
-			this.transactionType = TransactionType.DEPOSIT.getType();
-			break;
-		case 2:
-			this.transactionType = TransactionType.WITHDRAW.getType();
-			break;
-		default:
-			throw new InvalidOperationException();
+
+		try {
+			switch(transactionType) {
+			case 1:
+				this.transactionType = TransactionType.DEPOSIT.getType();
+				break;
+			case 2:
+				this.transactionType = TransactionType.WITHDRAW.getType();
+				break;
+			default:
+				throw new InvalidOperationException();
+		} 
+		} catch (InvalidOperationException e) {
+			e.printStackTrace();
 		}
 		this.transactionAmount = transactionAmount;
-		this.transacationDate = transacationDate;
+		this.transactionDate = transactionDate;
 	}
 	
 	public int getTransactionID() {
@@ -89,15 +94,15 @@ public class BankTransaction {
 		this.transactionAmount = transactionAmount;
 	}
 	public Date getTransacationDate() {
-		return transacationDate;
+		return transactionDate;
 	}
 	public void setTransacationDate(Date transacationDate) {
-		this.transacationDate = transacationDate;
+		this.transactionDate = transactionDate;
 	}
 	@Override
 	public String toString() {
-		return "BankTransaction [transactionID=" + transactionID + ", bankAccountID=" + bankAccountID
-				+ ", transactionType=" + transactionType + ", transactionAmount=" + transactionAmount
-				+ ", transacationDate=" + transacationDate + "]";
+		return "Transaction with transactino ID:\t" + transactionID + ", Account ID:\t" + bankAccountID
+				+ ", transaction Type\t" + transactionType + ", transaction Amount:\t" + transactionAmount
+				+ ", transaction Date\t" + transactionDate;
 	}
 }
