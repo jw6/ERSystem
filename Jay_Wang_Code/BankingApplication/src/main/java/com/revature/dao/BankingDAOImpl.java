@@ -18,13 +18,13 @@ import com.revature.utils.ConnectionUtil;
 public class BankingDAOImpl implements BankingDAO {
 	
 	public static void main(String[] args) {
-//		BankingDAOImpl bank = new BankingDAOImpl();
+		BankingDAOImpl bank = new BankingDAOImpl();
 //		bank.userLogin("jwang", "jw123");
 		
-//		BankTransaction bt = new BankTransaction(1, 1, 1, 101.12, new Date());
-//		System.out.println(bt.toString());
+		BankTransaction bt = new BankTransaction(1, 3, 1, 333.3, new Date());
+		System.out.println(bt.toString());
 		
-//		bank.performTransaction(bt);
+ 		bank.performTransaction(bt);
 		
 //		bank.performTransaction(8,112.4,1);
 		
@@ -66,6 +66,9 @@ public class BankingDAOImpl implements BankingDAO {
 			while(rs.next()) {
 				accounts.add(new BankAccount(rs.getInt("ba_id"), rs.getDouble("ba_balance")));
 			}
+			for(int i = 0; i < accounts.size(); i++) {
+				System.out.println(accounts.get(i));
+			}
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
@@ -76,7 +79,22 @@ public class BankingDAOImpl implements BankingDAO {
 	public void performTransaction(BankTransaction bt) {
 		
 		try(Connection conn = ConnectionUtil.getConnection();){
+			conn.setAutoCommit(false);
+			//fetch current balance of the account
+			String sql1 = "Select ba_balance FROM bank_account  WHERE ba_id = ?";
+			PreparedStatement ps = conn.prepareStatement(sql1);
+			ps.setInt(1, bt.getBankAccountID());
+			ResultSet rs = ps.executeQuery();
+			double balance = 0;
+			
+			if(rs.next()) {
+				balance = rs.getDouble("ba_balance");
+			}
+			System.out.println("test balance inside\t" + balance);
+			
 			String sql = "{CALL make_transaction(?, ?, ?)}";
+			
+			//above and below both work, add control flow later to check overdraft later
 			
 			CallableStatement cs = conn.prepareCall(sql);
 			cs.setInt(1, bt.getBankAccountID());
@@ -108,31 +126,26 @@ public class BankingDAOImpl implements BankingDAO {
 
 	@Override
 	public double viewBalance(int bankAccountID) {
-		// TODO Auto-generated method stub
 		return 0.0;
 	}
 
 	@Override
 	public boolean isOverDraft(double balance) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean transactionOnRecord() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public void transactionHistory() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public BankUser registerUser(String firstName, String lastName, String username, String password) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

@@ -51,6 +51,7 @@ public class BankUser {
 
 	@Override
 	public String toString() {
+		System.out.println("Welcome Login to Main Menu!");
 		return "User ID:\t" + bankUserID + ", First Name:\t" + firstName + ", Last Name:\t" + lastName
 				;
 		//+ ", Current Balance:\t" + "$" + balance

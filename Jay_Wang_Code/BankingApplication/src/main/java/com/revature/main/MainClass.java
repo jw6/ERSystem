@@ -3,6 +3,7 @@ package com.revature.main;
 import java.util.Scanner;
 
 import com.revature.exceptions.UserInfoException;
+import com.revature.models.BankUser;
 import com.revature.models.UserLoginInfo;
 import com.revature.service.Service;
 
@@ -22,7 +23,7 @@ public class MainClass {
 		while(flag) {
 			switch(status){
 				case 1:
-					System.out.println("Please enter your uername and password now");
+					System.out.println("Please enter your username and password now");
 					String username = sc.next();
 					String password = sc.next();
 						
@@ -53,10 +54,16 @@ public class MainClass {
 	}
 	
 	public void mainMenu() {
-		System.out.println("Welcome to Main Menu!");
 		int exit = 0;
-		while(exit!=0) {
-			
+		System.out.println("Enter your User ID, first name and last name to view account and balance");
+		int bankUserID = sc.nextInt();
+		String firstName = sc.next();
+		String lastName = sc.next();
+		BankUser user = new BankUser(bankUserID, firstName, lastName);
+		service.getBankAccountByUser(user);
+		while(exit == 0) {
+			System.out.println("Enter your Account ID to Proceed");
+//			int accountID = 
 		}
 	}
 }
