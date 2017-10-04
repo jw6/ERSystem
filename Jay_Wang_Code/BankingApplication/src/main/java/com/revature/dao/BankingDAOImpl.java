@@ -21,7 +21,7 @@ public class BankingDAOImpl implements BankingDAO {
 		BankingDAOImpl bank = new BankingDAOImpl();
 //		bank.userLogin("jwang", "jw123");
 		
-		BankTransaction bt = new BankTransaction(1, 3, 1, 333.3, new Date());
+		BankTransaction bt = new BankTransaction(1, 3, 1, 100, new Date());
 		System.out.println(bt.toString());
 		
  		bank.performTransaction(bt);
@@ -76,7 +76,7 @@ public class BankingDAOImpl implements BankingDAO {
 	}
 	
 	@Override
-	public void performTransaction(BankTransaction bt) {
+	public int performTransaction(BankTransaction bt) {
 		
 		try(Connection conn = ConnectionUtil.getConnection();){
 			conn.setAutoCommit(false);
@@ -90,49 +90,66 @@ public class BankingDAOImpl implements BankingDAO {
 			if(rs.next()) {
 				balance = rs.getDouble("ba_balance");
 			}
-			System.out.println("test balance inside\t" + balance);
+			System.out.println("Your current balance:\t$" + balance);
 			
 			String sql = "{CALL make_transaction(?, ?, ?)}";
 			
 			//above and below both work, add control flow later to check overdraft later
 			
+			if( ((balance < 0) || bt.getTransactionAmount() > balance ) && bt.getTransactionType() == 2) {
+				System.out.println("Sorry, you cannot overdraft from your account");
+				return -1;
+			} 
+			
 			CallableStatement cs = conn.prepareCall(sql);
 			cs.setInt(1, bt.getBankAccountID());
 			cs.setDouble(2, bt.getTransactionAmount());
 			cs.setInt(3, bt.getTransactionType());
-			cs.execute();
-			System.out.println("test inside");
-			}catch(SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void performTransaction(int baID, double amount, int type) {
-		
-		try(Connection conn = ConnectionUtil.getConnection();){
-			String sql = "{CALL make_transaction(?, ?, ?)}";
+			cs.execute();		
 			
-			CallableStatement cs = conn.prepareCall(sql);
-			cs.setInt(1, baID);
-			cs.setDouble(2, amount);
-			cs.setInt(3, type);
-			cs.execute();
-			System.out.println("test");
+			postTransactionBalance(1);
+			
 			}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
+	public void postTransactionBalance(int BankAccountID) {
+		try(Connection conn = ConnectionUtil.getConnection();){
+			conn.setAutoCommit(false);
+			//fetch current balance of the account
+			String sql1 = "Select ba_balance FROM bank_account  WHERE ba_id = ?";
+			PreparedStatement ps = conn.prepareStatement(sql1);
+			ps.setInt(1, BankAccountID);
+			ResultSet rs = ps.executeQuery();
+			double balance = 0;
+			
+			if(rs.next()) {
+				balance = rs.getDouble("ba_balance");
+			}
+			System.out.println("Your balance after this transaction:\t$" + balance);
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
-
-	@Override
-	public double viewBalance(int bankAccountID) {
-		return 0.0;
-	}
-
-	@Override
-	public boolean isOverDraft(double balance) {
-		return false;
-	}
+//	public void performTransaction(int baID, double amount, int type) {
+//		
+//		try(Connection conn = ConnectionUtil.getConnection();){
+//			String sql = "{CALL make_transaction(?, ?, ?)}";
+//			
+//			CallableStatement cs = conn.prepareCall(sql);
+//			cs.setInt(1, baID);
+//			cs.setDouble(2, amount);
+//			cs.setInt(3, type);
+//			cs.execute();
+//			System.out.println("test");
+//			}catch(SQLException e) {
+//			e.printStackTrace();
+//		}
+//	}
+	
 
 	@Override
 	public boolean transactionOnRecord() {

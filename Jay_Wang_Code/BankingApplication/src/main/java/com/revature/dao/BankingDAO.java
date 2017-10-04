@@ -13,14 +13,8 @@ public interface BankingDAO {
 	//User can login
 	public BankUser userLogin (String username, String password);
 	//User can perform deposit and withdrawal
-	public void performTransaction(BankTransaction bt);
-	//user can view balance
-	public double viewBalance (int bankAccountID);
-	//user can perform multiple transaction continuously
+	public int performTransaction(BankTransaction bt);
 
-	//user cannot overdraft
-	public boolean isOverDraft(double balance);
-	
 	//Bonus parts
 	public boolean transactionOnRecord();
 	public void transactionHistory();

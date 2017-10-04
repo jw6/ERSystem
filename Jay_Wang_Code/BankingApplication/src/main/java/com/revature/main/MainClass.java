@@ -53,6 +53,11 @@ public class MainClass {
 		mainMenu();
 	}
 	
+	//This constructor is coded for register a new user
+	public MainClass() {
+		
+	}
+	
 	public void mainMenu() {
 		int exit = 0;
 		System.out.println("Enter your User ID, first name and last name to view account and balance");
