@@ -1,5 +1,28 @@
 package com.revature.service;
 
-public class Service {
+import java.util.List;
 
+import com.revature.dao.BankingDAOImpl;
+import com.revature.models.BankAccount;
+import com.revature.models.BankTransaction;
+import com.revature.models.BankUser;
+
+public class Service {
+	BankingDAOImpl service = new BankingDAOImpl();
+	
+	public BankUser userLogin(String username, String password) {
+		return service.userLogin(username, password);
+	}
+	
+	public List<BankAccount> getBankAccountByUser(BankUser user) {
+		return service.getBankAccountByUser(user);
+	}
+	
+	public void performTransaction(BankTransaction bt) {
+		service.performTransaction(bt);
+	}
+	
+	public int getUserID() {
+		return 0;
+	}
 }

@@ -18,13 +18,13 @@ import com.revature.utils.ConnectionUtil;
 public class BankingDAOImpl implements BankingDAO {
 	
 	public static void main(String[] args) {
-		BankingDAOImpl bank = new BankingDAOImpl();
-		bank.userLogin("jwang", "jw123");
+//		BankingDAOImpl bank = new BankingDAOImpl();
+//		bank.userLogin("jwang", "jw123");
 		
-		BankTransaction bt = new BankTransaction(1, 1, 1, 101.12, new Date());
-		System.out.println(bt.toString());
+//		BankTransaction bt = new BankTransaction(1, 1, 1, 101.12, new Date());
+//		System.out.println(bt.toString());
 		
-		bank.performTransaction(bt);
+//		bank.performTransaction(bt);
 		
 //		bank.performTransaction(8,112.4,1);
 		
@@ -44,7 +44,7 @@ public class BankingDAOImpl implements BankingDAO {
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()) {
 				user = new BankUser(rs.getInt("u_id"), rs.getString("u_fn"), rs.getString("u_ln"));
-				//System.out.println(user.toString());
+				System.out.println(user.toString());
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -52,6 +52,7 @@ public class BankUser {
 	@Override
 	public String toString() {
 		return "User ID:\t" + bankUserID + ", First Name:\t" + firstName + ", Last Name:\t" + lastName
-				+ ", Current Balance:\t" + "$" + balance;
+				;
+		//+ ", Current Balance:\t" + "$" + balance
 	}
 }
