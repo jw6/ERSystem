@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html ><!-- html is the root tag and there is no version mentioned: HTML5 -->
+<head>
+	<!-- head tag/element: meta data -->
+	<meta charset="ISO-8859-1">
+	<title>This the title of the page</title>
+</head>
+<body>
+<!-- 
+	id = # for js & css
+ -->
+
+<a id="top" href="#bottom" >click to go to bottom</a>
+<p>paragraph: HTML stands for: Hypertext Markup Language</p>
+The body tag/element is used to: Display data to the screen
+<h1>header font 1</h1>
+<h2>header font 2</h2>
+<h3>header font 3</h3>
+<h4>header font 4</h4>
+<h5>header font 5</h5>
+<h6>header font 6</h6>
+
+<!-- 2 types of Lists -->
+	<ul> <!-- unordered list -->
+		<li>List item 1</li>
+		<li>List item 2</li>
+		<li>List item 3</li>
+	</ul>
+	<h2>My favorite Movies</h2>
+	<ol><!-- ordered list -->
+		<li>Iron man</li>
+		<li>Batman</li>
+	</ol>
+<!-- Block element  -->
+<div>Div tag</div>
+<div>Div tag 1</div>
+
+<!-- Inline element -->
+<span id="firstSpan" >span the width of the element itself</span>
+<span id="secondSpan">: another span tag</span>
+
+<!-- a: anchor href: attribute-->
+<a href="https://lmgtfy.com/">Click for help</a>
+
+<!-- table, tr, th, td -->
+<table>
+	<tr> <!-- table row -->
+		<th>id</th><!-- table header -->
+		<th>name</th>
+		<th>major</th>
+	</tr>
+	<tr>
+		<td>1</td> <!-- table data -->
+		<td>Sally</td>
+		<td>HR</td>
+	</tr>
+	<tr>
+		<td>2</td>
+		<td>Bobbert</td>
+		<td>Bobbing</td>
+	</tr>
+</table>
+
+<!-- input data to send to the server -->
+<!-- action: url to go to method: type of request: e.g. get/post -->
+<form action="login" method="post">
+	Enter username: <input type="text" name="username" placeholder="Enter username" required/> <br><br>
+	Enter password: <input type="password" name="password" required /> <br><br>
+	<input type="submit">
+</form>
+<form>
+	Please Register <br>
+	Name: <input type="text" /> <br><br>
+	Review: <textarea rows="10" cols="15"></textarea> <br> <br>
+	Hobbies: <br>
+		<!-- 
+			name: attribute is the variable name server side
+			e.g.
+				request.getParameter("name-attribute"); like
+				request.getParameter("username");
+		 -->
+		<input type="checkbox" name="hobby" value="fishing" /> Fishing <br>
+		<input type="checkbox" name="hobby" value="football" /> football <br>
+		<input type="checkbox" name="hobby" value="running" /> running <br>
+		
+	Enter age: <input type="number" name="age" placeholder="enter age" min="18"  max="90" />
+
+</form>
+
+<div>
+	My favorite picture:
+	<img src="http://tu9srvbirvvtmjiky2rums13d3cuzg9ndgltzs5jb200.g00.dogtime.com/g00/2_ZG9ndGltZS5jb20%3D_/TU9SRVBIRVVTMjIkaHR0cDovL2NkbjEtd3d3LmRvZ3RpbWUuY29tL2Fzc2V0cy91cGxvYWRzL2dhbGxlcnkvMzAtaW1wb3NzaWJseS1jdXRlLXB1cHBpZXMvaW1wb3NzaWJseS1jdXRlLXB1cHB5LTIuanBnP2kxMGMubWFyay5pbWFnZS50eXBl_$/$/$/$/$/$" 
+		style="width:500px;height:400px;"
+		alt="discription of the picture"
+		/>
+	
+</div>
+<div>
+	<!--  webpage within a webpage -->
+	<iframe src="https://techcrunch.com/" style="width:500px;height:400px;" ></iframe>
+</div>
+<div>
+	<a id="bottom" href="#top"> Click me to go to the top</a> 
+</div>
+</body>
+</html>
