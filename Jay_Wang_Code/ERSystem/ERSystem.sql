@@ -55,7 +55,8 @@ CREATE TABLE reimbursement(
 );
 /
 commit;
-/--Sequences and triggers for primary keys
+/
+----------------Sequences and triggers-----------------------
 CREATE SEQUENCE role_type_seq START WITH 1 INCREMENT BY 1;
 CREATE SEQUENCE ers_user_seq START WITH 1 INCREMENT BY 1;
 CREATE SEQUENCE reimbursement_type_seq START WITH 1 INCREMENT BY 1;
@@ -106,4 +107,5 @@ IF :new.rb_id IS NULL THEN
   SELECT reimbursement_seq.NEXTVAL INTO :new.rb_id FROM dual;
 END IF;
 END;
-
+/
+commit;
