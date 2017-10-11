@@ -194,3 +194,56 @@ function defaultOperator(myVar){
 		 * 
 		 */
 }
+
+
+
+
+var countCars = 0;
+var countBirds = 0;
+
+function countCar(){
+	countCars++;
+	console.log('Number of cars: ' + countCars);
+	return countCars;
+}
+
+function countBird(){
+	countBirds++;
+	console.log('Number of birds: ' + countBirds);
+	return countBirds;
+}
+
+
+/**
+ *  Closure will solve this problem!
+ *  	Nested functions will hold the outside Function's state
+ *  
+ *   JavaScript's form of Encapsulation
+ * 
+ */
+//Better but still only creates counters for birds not cars...
+function makeBirdCounter(){
+	var birdCount = 0;
+	return function(){
+		console.log('The count is: ' + ++birdCount);
+		return birdCount;
+	}
+}
+
+//Now we can make counters for anything!
+function makeCounter(noun){
+	var count = 0;
+	return function(){
+		console.log('The count of ' + noun + ' is ' + ++count);
+		return count;
+	}
+}
+
+
+function sum(x, y) {
+	  if (y !== undefined) {
+	    return x + y;
+	  } else {
+	    return function(y) { return x + y; };
+	  }
+	}
