@@ -1,4 +1,5 @@
 --DDL script for banking_db
+
 create table bank_user (
 u_id            INT,
 u_fn            VARCHAR2(4000),
@@ -16,7 +17,7 @@ PRIMARY KEY     (ba_id),
 FOREIGN KEY     (u_id)              REFERENCES bank_user(u_id)
 );
 
---Lookup table 1-deposit 2-withdrawal
+--Lookup table 1-deposit 2-withdraw
 create table bank_tx_type (
 btt_id          INT,
 btt_type        VARCHAR2(4000)      UNIQUE,
@@ -33,3 +34,6 @@ PRIMARY KEY     (tx_id),
 FOREIGN KEY     (ba_id)             REFERENCES bank_account(ba_id),
 FOREIGN KEY     (btt_id)            REFERENCES bank_tx_type(btt_id)
 );
+/
+commit;
+

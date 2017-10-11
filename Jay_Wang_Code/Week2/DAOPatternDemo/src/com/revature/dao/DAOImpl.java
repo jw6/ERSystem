@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import com.revature.pojo.Customer;
 import com.revature.util.ConnectionUtil;
 
-public class DAOImpl extends DAO{
+public class DAOImpl implements DAO{
 
 	@Override
 	public int addCustomer(Customer customer) {

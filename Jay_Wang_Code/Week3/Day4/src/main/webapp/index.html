@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html><!-- HTML is the root tag and this is no version mentioned HTML5 -->
+<head>
+	<meta charset="UTF-8"> <!-- meta is data about data -->
+	<title>This is the title</title>
+</head>
+<body>
+
+	<a id="top" href="#bottom"> Click to go to bottom  </a>
+
+
+<p>paragraph: HTML stands for: Hypertext Markup Language</p>
+
+The body tag/element is used to: Display data to the screen
+<h1>Header font 1</h1>
+<h2>Header font 2</h2>
+<h3>Header font 3</h3>
+<h4>Header font 4</h4> <!-- Static contents don't need to publish -->
+<!-- 2 types of Lists -->
+	<ul><!--  unorder lists -->
+		<li>		1</li>
+		<li>		2</li>
+		<li>		3</li>
+		<li>		4</li>
+	</ul>
+	<ol>
+		<li>		1</li>
+		<li>		2</li>
+		<li>		3</li>
+		<li>		4</li>
+	</ol>
+<!-- divider -->
+<div>Div tag</div>
+<div>Div tag</div>
+
+<span id="firstSpan">span the width of the element itself</span>
+<span id="secondSpan">: another span tag</span>
+<!-- element, attribute -->
+<!-- a is anchor -->
+<a href="http://lmgtfy.com/">Click for help</a>
+
+<table>
+	<tr> <!-- table row -->
+		<th>id</th>
+		<th>name</th>
+		<th>major</th>
+	</tr>
+	<tr>
+		<td>1</td>
+		<td>Sally</td>
+		<td>CS</td>
+	</tr>
+		<tr>
+		<td>2</td>
+		<td>Bobby</td>
+		<td>HR</td>
+	</tr>	
+</table>	
+<!-- input data to send to the server -->
+<!--  action: url to go to method: type of request: e.g. get/post -->
+<form action="Login" method="post"><br>
+	Enter username: <input type="text" name="username" placeholder = "username"/> <br>
+	Enter password: <input type="password" name="password" placeholder = "password"/> <br>
+	<input type="submit"> <br><br>
+</form>	
+
+<form>
+	Please Register <br>
+	Name: <input type="text"/> <br><br>
+	Review: <textarea rows="10" cols="15"></textarea>
+	Hobbies:
+		<!-- 
+			name: attribute is the variable name server side
+			e.g. 
+				request.getPatameter("name-attribute"); like
+				request.getPatameter("username");		
+		 -->
+		 <br>
+		<input type="checkbox" name="hobby" value="fishing" /> Fishing<br>
+		<input type="checkbox" name="hobby" value="football" /> Football<br>
+		<input type="checkbox" name="hobby" value="running" /> Running<br>
+		
+	Enter age:  <input type="number" name="age" placeholder="Enter Age" min="18" max="90" /> Age<br>		
+</form>
+<br><br>
+<div>
+	My favorite picture<br>
+	<img src="https://www.petfinder.com/wp-content/uploads/2012/11/91615172-find-a-lump-on-cats-skin-632x475.jpg"
+		style="width:500px; height:400px"
+		alt="discription of the picture"
+		/>
+</div>
+<br>
+<div>
+	<!-- webpage within a webpage -->
+	<iframe src="http://techcrunch.com/" style="width:500px;height:400px" />
+
+</div>
+
+<div>
+	<a id="bottom" href="#top"> Click to go to top  </a>
+</div>
+</body>
+</html>

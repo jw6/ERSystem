@@ -1,0 +1,25 @@
+@charset "UTF-8";
+/*
+This is CSS
+						 3 types of CSS /JS 
+							 # - id
+							 . - class
+							element /tag name e.g <h1> <h2> <p>* /
+h1 {
+	color: red;
+}
+
+#cssH1 {
+	color: green;
+}
+
+.cssJS {
+	color: blue;
+}
+
+/*
+		Responsive Website: dynamic dimensions
+*/
+div {
+	font-size: 20;
+}

@@ -55,3 +55,55 @@ CREATE TABLE reimbursement(
 );
 /
 commit;
+/--Sequences and triggers for primary keys
+CREATE SEQUENCE role_type_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE ers_user_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE reimbursement_type_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE status_type_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE reimbursement_seq START WITH 1 INCREMENT BY 1;
+/
+CREATE OR REPLACE TRIGGER role_type_seq_trg
+BEFORE INSERT ON role_type
+FOR EACH ROW
+BEGIN
+IF :new.rt_id IS NULL THEN
+  SELECT role_type_seq.NEXTVAL INTO :new.rt_id FROM dual;
+END IF;
+END;
+/
+CREATE OR REPLACE TRIGGER ers_user_seq_trg
+BEFORE INSERT ON ers_user
+FOR EACH ROW
+BEGIN
+IF :new.ers_id IS NULL THEN
+  SELECT ers_user_seq.NEXTVAL INTO :new.ers_id FROM dual;
+END IF;
+END;
+/
+CREATE OR REPLACE TRIGGER reimbursement_type_seq_trg
+BEFORE INSERT ON reimbursement_type
+FOR EACH ROW
+BEGIN
+IF :new.rbt_id IS NULL THEN
+  SELECT reimbursement_type_seq.NEXTVAL INTO :new.rbt_id FROM dual;
+END IF;
+END;
+/
+CREATE OR REPLACE TRIGGER status_type_seq_trg
+BEFORE INSERT ON status_type
+FOR EACH ROW
+BEGIN
+IF :new.st_id IS NULL THEN
+  SELECT status_type_seq.NEXTVAL INTO :new.st_id FROM dual;
+END IF;
+END;
+/
+CREATE OR REPLACE TRIGGER reimbursement_seq_trg
+BEFORE INSERT ON reimbursement
+FOR EACH ROW
+BEGIN
+IF :new.rb_id IS NULL THEN
+  SELECT reimbursement_seq.NEXTVAL INTO :new.rb_id FROM dual;
+END IF;
+END;
+

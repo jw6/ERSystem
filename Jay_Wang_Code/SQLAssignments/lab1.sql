@@ -162,18 +162,19 @@ SELECT average_price_invoiceline(1) FROM dual;
 /
 --3.4 User defined table valued functions
 --Create a function that returns all employees who are born after 1968
-create or replace function age_finder
+
+create or replace procedure age_finder
 (
     minimum_age IN NUMBER, 
     employee_list OUT SYS_REFCURSOR
 ) AS
 BEGIN 
-    OPEN employ_list FOR
+    OPEN employee_list FOR
         SELECT firstname, lastname
         FROM EMPLOYEE
         WHERE EXTRACT (YEAR FROM birthdate) > minimum_age;
 END age_finder;
-
+/
 --4.0 Stored Procedure
 --4.1 Basic stored procedure
 --Create stored procedure that selects the first and last names of all the employees
