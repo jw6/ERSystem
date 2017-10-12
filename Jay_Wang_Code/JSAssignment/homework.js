@@ -1,3 +1,7 @@
+document.write("1. Shapes");
+document.write("<br>");
+
+
 function printShape() {
     var shape = arguments[0];
     var height = arguments[1];
@@ -43,9 +47,38 @@ function printShape() {
             document.write("<br>");
     }
 }
-document.write("1. Shapes<br>");
-printShape("Square", 3, "%");
-document.write('<br>');
-printShape("Triangle", 3, "$");
-document.write('<br>');
-printShape("Diamond", 5, "*");
+// document.write("1. Shapes<br>");
+// printShape("Square", 3, "%");
+// document.write('<br>');
+// printShape("Triangle", 3, "$");
+// document.write('<br>');
+// printShape("Diamond", 5, "*");
+
+document.write("2. Object literal");
+document.write("<br>");
+
+var superAwesomeObject = {
+    name: "jay",
+    major: "cs",
+    age: 3
+}
+
+function traverseObject(randomStuff) {
+    for( i in randomStuff) {
+        document.write(i + " " + randomStuff[i] + "<br>");
+    }
+}
+
+document.write("3. Delete Element");
+document.write("<br>");
+
+random = [1,2,3,4,5];
+
+function deleteElement(randomStuff) {
+    document.write("current length: " + randomStuff.length + "<br>");
+    if(randomStuff.length > 2) {
+        delete randomStuff[2];
+    }
+    document.write("current length: " + randomStuff.length + "<br>");
+}
+
