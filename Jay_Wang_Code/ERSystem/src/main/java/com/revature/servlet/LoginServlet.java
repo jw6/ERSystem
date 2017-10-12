@@ -17,14 +17,16 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("resources/html/index.html").forward(request, response);
+		System.out.println("LoginServlet -GET");
+		request.getRequestDispatcher("resources/html/login.html").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("LoginServlet --doPost");
+		System.out.println("LoginServlet -Post");
+		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
