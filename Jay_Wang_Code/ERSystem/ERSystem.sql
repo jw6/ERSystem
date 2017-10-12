@@ -109,3 +109,18 @@ END IF;
 END;
 /
 commit;
+
+/
+INSERT INTO role_type(rt_type) VALUES ('Manager');
+INSERT INTO role_type(rt_type) VALUES ('Employee');
+/
+INSERT INTO status_type (st_name) VALUES ('Pending');
+INSERT INTO status_type (st_name) VALUES ('Approved');
+INSERT INTO status_type (st_name) VALUES ('Denied');
+/
+commit;
+/
+INSERT INTO ers_user (ers_fn, ers_ln, ers_username, ers_password, ers_email) VALUES ('Dinash', 'Chugtai', 'Dinash', 'd123', 'jaywang007@yahoo.com');
+INSERT INTO ers_user (ers_fn, ers_ln, ers_username, ers_password, rt_id, ers_email) VALUES ('Jared', 'Dunn', 'Jared', 'j123', 2, 'jaywang007@yahoo.com');
+commit;
+
