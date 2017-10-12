@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>POKEMON API</title>
+
+<!-- JQuery -->
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous">
+</script>
+  
+<link rel="stylesheet" href=resources/css/theme.css />
+<script type="text/javascript" src="resources/js/pokemon.js"></script>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</head>
+<body>
+	<div class="container">
+		<h1>Welcome, become a Pokemon Master</h1>
+	
+		<div class="jumbotron">
+			<h3 class="text-center">AJAX Example using PokeAPI.co a RESTful API</h3>
+			<div>
+				<span class="label label-success">Enter pokemon id: <input id="pokeId" type="number"></span>
+					<placeholder="enter pokemon id" required />
+				
+				<button id="pokeBtn" class="label label-warning">Get Pokemon Info</button>
+			</div>
+		</div>
+		
+		<div>
+			<div id="pokeInfo">
+				<h3 id="pokeName"></h3>
+				<img id="pokeImg" src="" alt="">	
+			</div>
+		</div>
+	</div>	
+</body>
+</html>

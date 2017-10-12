@@ -79,7 +79,7 @@ function sayThisWord(myWord, myOtherWord) {
 
 
 /*
- * 		Hoisting: undefined variables are brough to the top of the scope 
+ * 		Hoisting: undefined variables are brought to the top of the scope 
  */
 function HoistingExample(num) {
 //	var xyz;
@@ -173,4 +173,71 @@ function defaultOperator(myVar){
 	 *  if first argument true return left side 
 	 *  if first argument false return right side
 	 */
+}
+
+
+
+
+
+var countCars = 0;
+var countBirds = 0;
+
+function countCar(){
+	countCars++;
+	console.log("Number of cars: " + countCars);
+	return countCars;
+}
+
+function countBird(){
+	countBird++;
+	console.log("Number of cars: " + countBirds);
+	return countBirds;
+}
+
+/**
+ *  Closure will solve this problem!
+ *  		Nested functions will hold the outside Function's state
+ */
+//Better but still only creates counters for birds not cars 
+function makeBirdCounter(){
+	var birdCount = 0;
+	return function(){
+		console.log('The count is ' + ++birdCount);
+		return birdCount;
+	}
+}
+
+//JavaScript encapsulation
+
+//Now we can make counters for anything
+function makeCounter(noun){
+	var count = 0;
+	return function(){
+		console.log('The count of ' + noun + ' is ' + ++count);
+		return count;
+	}
+}
+
+function sum() {
+	var x = arguments[0];
+	for(i = 1; i < arguments.length; i++) {
+		x += arguments[i];
+	}
+	
+	if(arguments.length == 1) {
+		return function(a) {
+			return x + a;
+		}
+	}
+	return x;
+}
+
+function sum1(x, y) {
+	if(y !== undefined) {
+		return x + y;
+	} else {
+		return function(y) {
+			return x + y;
+		}
+	}
 }
