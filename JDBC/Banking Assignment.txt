@@ -1,0 +1,28 @@
+Use a Theme!
+A user can login
+A user can deposit to their account
+A user can withdraw
+A user can view balance
+A user can execute multiple transactions in one session
+A user can logout (exit program)
+A user's data is persistent at all times
+A bank has many users
+A user has a username, password and balance
+A user can not overdraft
+Bonus cases: 
+	A user's transactions are recorded 
+	A user can view transaction history
+	A user can register
+
+Use at least 2 PreparedStatements, and 2 CallableStatements
+						(2 different stored procs)
+Use triggers and sequences
+
+Handle Simple errors/input - can't withdrawal too much, didn't type a number
+Throw a customs exceptions
+Use the DAO pattern - Do not contain Business logic in the DAO
+			e.g. don't check if the password is correct
+Add as many unit tests as possible
+Presentations on x
+2-3mins Tell a Story highlighing the User Storys in action
+2-3mins Showing your code
