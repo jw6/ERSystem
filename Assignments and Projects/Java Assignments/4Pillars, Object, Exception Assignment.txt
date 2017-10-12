@@ -1,0 +1,47 @@
+Part 1.
+Create a new project
+
+Create an interface
+-At least one method, and variable
+
+-----POJOS------------------------
+Create an abstract class
+-with 2 properties
+-with 3 methods, at least 1 concrete, 1 abstract
+
+Extend 2 classes from that abstract class
+-Implement the interface
+-Provide 2 additional Methods 
+-Provide a constructor that will Syso
+-Add 2 throws exception declaration to 2 methods, 1 checked, 1 unchecked
+
+Extend 2 SubClasses
+-Provide a Constructor that Calls Super Constructor and Syso afterwards
+-Check the inherited methods and the exceptions
+-----------------------------------
+
+Make a main class that shows you used all the above
+Test the senarios below (not graded)
+1. Instantiate an class with an AbstractClass Reference, 
+	use control space to see what variables, and methods are available
+2. Cast that AbstractClass reference down. Which method is called the parent or child?
+3. Can you remove the exceptions in the subClasses? 
+	or change it from RuntimeException to Exception or vice versa
+	Can you change it to a different Exception?
+4. Catch the Exceptions, add a finally block, call a method from the catch block
+	Does the method run before or after the finally block?
+5. What are the default values of each scope?
+	Objects = null for instances at Static aka Class scope
+	Objects = ? for Instance, Parameter, and Local scope?
+	Each primitive dafault value?
+
+Part 2:
+Persist one instance to a file through 
+	1.Serialization and read from it
+	2.FileReader/Writer
+	3.BufferedReader/Writer
+
+Bonus: Read from Console to allow input from the user of the application to interact
+	with the your POJOs
+
+
