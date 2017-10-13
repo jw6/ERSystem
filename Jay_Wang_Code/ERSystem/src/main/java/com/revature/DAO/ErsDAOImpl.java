@@ -34,6 +34,7 @@ public class ErsDAOImpl implements ErsDAO {
 			
 			if(rs.next()) {
 				dbUser = new ERSUser(rs.getInt("ers_id"), rs.getString("ers_username"),
+									rs.getString("ers_password"),
 									rs.getString("ers_email"), rs.getString("ers_fn"),
 									rs.getString("ers_ln"), rs.getInt("rt_id"));
 			}

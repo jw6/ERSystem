@@ -10,12 +10,20 @@ public class AppService {
 		
 		ERSUser dbUser = dao.getUserByUsername(clientUser);
 		if(dbUser != null) {
-			if(dbUser.getUsername().equals(clientUser.getUsername())
-					&& dbUser.getPassword().equals(clientUser.getPassword())) {
+			if(			dbUser.getUsername().equals(clientUser.getUsername())
+					&& 	dbUser.getPassword().equals(clientUser.getPassword())		) {
+				
 				return dbUser;
 			}
 		}
 		return null;
 	}
 	
+//	public static void main(String[] args) {
+//		ErsDAO dao = new ErsDAOImpl();
+//		ERSUser client = new ERSUser("Dinash", "d123");
+//		ERSUser dbUser = dao.getUserByUsername(client);
+//		System.out.println(dbUser.toString());
+//	}
+//	
 }

@@ -21,10 +21,11 @@ public class ERSUser {
 
 
 
-	public ERSUser(int userID, String username, String email, String firstName, String lastName, int roleId) {
+	public ERSUser(int userID, String username, String password, String email, String firstName, String lastName, int roleId) {
 		super();
 		this.userID = userID;
 		this.username = username;
+		this.password = password;
 		this.email = email;
 		this.firstName = firstName;
 		this.lastName = lastName;
