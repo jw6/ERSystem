@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>AngularApp</title>
+
+<!-- AngularJS v1.6 CDN the last version of v1 -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+<!-- our custom angularJS code -->
+<script type="text/javascript" src="app.js"></script>
+</head>
+<body data-ng-app="revApp" data-ng-init="name='John'">
+<!-- 
+	All of these are AngularJs directives
+	ng-app = initializes the application and between the element it is attached to is where the SPA lives
+	ng-model
+	
+	2-way data-binding view-to-model
+	{{ }} Angular expression to print your model to the view (page)
+ -->
+	<div >
+		<h1>Welcome to AngularJS</h1>
+		<div hello-world></div>
+		Enter name: <input type="text" ng-model="name" />
+		Name will be dynamically update here: {{name}}
+		
+		<div data-ng-controller="aboutMe">
+			about me section {{myVar}}
+			<input type="text" ng-model="myVar" />
+		</div>
+	</div>
+
+</body>
+</html>

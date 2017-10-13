@@ -48,7 +48,13 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("user", clientUser);
 			
 			//validated user sent to app.html
-			request.getRequestDispatcher("app.html").forward(request, response);
+			if(clientUser.getRoleId() == 1) {
+				request.getRequestDispatcher("employeeHome.html").forward(request, response);
+			} else if(clientUser.getRoleId() == 2) {
+				request.getRequestDispatcher("managerHome.html").forward(request, response);
+			}
+			
+			
 		} else {
 			doGet(request, response);
 		}

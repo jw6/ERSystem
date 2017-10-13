@@ -19,4 +19,14 @@
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/LoginServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AjaxNavbarServlet</display-name>
+    <servlet-name>AjaxNavbarServlet</servlet-name>
+    <servlet-class>com.revature.servlet.AjaxNavbarServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AjaxNavbarServlet</servlet-name>
+    <url-pattern>/AjaxNavbarServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
