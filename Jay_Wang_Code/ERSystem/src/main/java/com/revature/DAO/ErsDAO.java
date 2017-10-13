@@ -1,5 +1,12 @@
 package com.revature.DAO;
 
-public class ERSystemDAO {
+import com.revature.beans.ERSUser;
 
+public interface ErsDAO {
+	/*
+	 * CRUD methods only
+	 * 
+	 */
+	
+	public ERSUser getUserByUsername(ERSUser user);
 }

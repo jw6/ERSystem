@@ -123,4 +123,6 @@ commit;
 INSERT INTO ers_user (ers_fn, ers_ln, ers_username, ers_password, ers_email) VALUES ('Dinash', 'Chugtai', 'Dinash', 'd123', 'jaywang007@yahoo.com');
 INSERT INTO ers_user (ers_fn, ers_ln, ers_username, ers_password, rt_id, ers_email) VALUES ('Jared', 'Dunn', 'Jared', 'j123', 2, 'jaywang007@yahoo.com');
 commit;
+/ 
+SELECT * FROM status_type;
 

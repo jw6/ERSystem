@@ -7,6 +7,19 @@ public class BankAccount {
 	public BankAccount() {
 		super();
 	}
+	
+	@Override
+	public String toString() {
+		return "BankAccount [baId=" + baId + ", baBalance=" + baBalance + ", baUserId=" + baUserId + "]";
+	}
+
+	public BankAccount(int baId, double baBalance, int baUserId) {
+		super();
+		this.baId = baId;
+		this.baBalance = baBalance;
+		this.baUserId = baUserId;
+	}
+
 	public int getBaId() {
 		return baId;
 	}

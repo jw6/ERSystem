@@ -1,4 +1,4 @@
-package com.revature.models;
+package com.revature.beans;
 
 public class ReimbursementStatus {
 	private int statusID;

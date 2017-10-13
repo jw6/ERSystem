@@ -1,14 +1,14 @@
-package com.revature.models;
+package com.revature.beans;
 
-public class UserRole {
+public class ERSUserRole {
 	private int roleID;
 	private String role;
 	
-	public UserRole() {
+	public ERSUserRole() {
 		super();
 	}
 	
-	public UserRole(int roleID, String role) {
+	public ERSUserRole(int roleID, String role) {
 		super();
 		this.roleID = roleID;
 		this.role = role;

@@ -19,4 +19,44 @@
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/LoginServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AjaxNavbarServlet</display-name>
+    <servlet-name>AjaxNavbarServlet</servlet-name>
+    <servlet-class>com.revature.servlet.AjaxNavbarServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AjaxNavbarServlet</servlet-name>
+    <url-pattern>/AjaxNavbarServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AjaxRevatureHomeViewServlet</display-name>
+    <servlet-name>AjaxRevatureHomeViewServlet</servlet-name>
+    <servlet-class>com.revature.servlet.AjaxRevatureHomeViewServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AjaxRevatureHomeViewServlet</servlet-name>
+    <url-pattern>/AjaxRevatureHomeViewServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AjaxBankUserInfoServlet</display-name>
+    <servlet-name>AjaxBankUserInfoServlet</servlet-name>
+    <servlet-class>com.revature.servlet.AjaxBankUserInfoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AjaxBankUserInfoServlet</servlet-name>
+    <url-pattern>/AjaxBankUserInfoServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AjaxTxViewServlet</display-name>
+    <servlet-name>AjaxTxViewServlet</servlet-name>
+    <servlet-class>com.revature.servlet.AjaxTxViewServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AjaxTxViewServlet</servlet-name>
+    <url-pattern>/AjaxTxViewServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

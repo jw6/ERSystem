@@ -1,16 +1,36 @@
-package com.revature.models;
+package com.revature.beans;
 
-public class User {
+public class ERSUser {
 	private int userID;
 	private String username;
+	private String password;
 	private String email;
 	private String firstName;
 	private String lastName;
-	private UserRole role;
-
-	public User() {
+	private int roleId;
+	
+	public ERSUser() {
 		super();
-	}	
+	}
+	
+	public ERSUser(String username, String password) {
+		super();
+		this.username = username;
+		this.password = password;
+	}
+
+
+
+	public ERSUser(int userID, String username, String email, String firstName, String lastName, int roleId) {
+		super();
+		this.userID = userID;
+		this.username = username;
+		this.email = email;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.roleId = roleId;
+	}
+
 	
 	public int getUserID() {
 		return userID;
@@ -26,6 +46,14 @@ public class User {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getEmail() {
@@ -52,41 +80,11 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public UserRole getRole() {
-		return role;
+	public int getRoleId() {
+		return roleId;
 	}
 
-	public void setRole(UserRole role) {
-		this.role = role;
+	public void setRoleId(int roleId) {
+		this.roleId = roleId;
 	}
-
-	public User(int userID, String username, String firstName, String lastName, UserRole role) {
-		super();
-		this.userID = userID;
-		this.username = username;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.role = role;
-	}
-	
-	/*
-	 * this constructor is intended to later after email function is added 
-	 */
-	public User(int userID, String username, String email, String firstName, String lastName, UserRole role) {
-		super();
-		this.userID = userID;
-		this.username = username;
-		this.email = email;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.role = role;
-	}
-
-	@Override
-	public String toString() {
-		return "User [userID=" + userID + ", username=" + username + ", email=" + email + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", role=" + role + "]";
-	}
-	
-	
 }

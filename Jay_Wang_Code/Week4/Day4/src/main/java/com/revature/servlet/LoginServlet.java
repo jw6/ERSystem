@@ -1,7 +1,7 @@
 package com.revature.servlet;
 
 import java.io.IOException;
-import javax.servlet.ServletException;
+importmport javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -33,32 +33,32 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("LoginServlet -POST");
 		String username = request.getParameter("username");
-		String password = request.getParameter("password");	
-		
+		String password = request.getParameter("password");
+
 		System.out.println("The user enter: " + username + " " + password);
 		BankUser clientUser = new BankUser(username, password);
 		//4
 		clientUser = new AppService().validateUser(clientUser);
-		
-		if(clientUser != null) {	
+
+		if(clientUser != null) {
 			//2 Store the valid user into the Session
 			HttpSession session = request.getSession();
-			session.setAttribute("user", "clientUser");
-			
-			
+			session.setAttribute("user", clientUser);
+
+
 			//1 validated user sent to app.html
 			request.getRequestDispatcher("app.html").forward(request, response);
 		} else {
 			doGet(request, response);
 		}
-//		
+//
 //		//2 Store the valid user into the Session
 //		HttpSession session = request.getSession();
 //		session.setAttribute("user", "clientUser");
-//		
-//		
+//
+//
 //		//1 validated user sent to app.html
 //		request.getRequestDispatcher("app.html").forward(request, response);
-	} 
+	}
 
 }
