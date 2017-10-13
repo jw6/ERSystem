@@ -31,7 +31,6 @@ public class ERSUser {
 		this.roleId = roleId;
 	}
 
-	
 	public int getUserID() {
 		return userID;
 	}
@@ -86,5 +85,11 @@ public class ERSUser {
 
 	public void setRoleId(int roleId) {
 		this.roleId = roleId;
+	}
+	
+	@Override
+	public String toString() {
+		return "ERSUser [userID=" + userID + ", username=" + username + ", password=" + password + ", email=" + email
+				+ ", firstName=" + firstName + ", lastName=" + lastName + ", roleId=" + roleId + "]";
 	}
 }

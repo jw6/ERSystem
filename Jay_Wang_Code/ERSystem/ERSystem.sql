@@ -124,5 +124,5 @@ INSERT INTO ers_user (ers_fn, ers_ln, ers_username, ers_password, ers_email) VAL
 INSERT INTO ers_user (ers_fn, ers_ln, ers_username, ers_password, rt_id, ers_email) VALUES ('Jared', 'Dunn', 'Jared', 'j123', 2, 'jaywang007@yahoo.com');
 commit;
 / 
-SELECT * FROM status_type;
+SELECT * FROM ers_user WHRERE ERS_username = 'Dinash';
 
