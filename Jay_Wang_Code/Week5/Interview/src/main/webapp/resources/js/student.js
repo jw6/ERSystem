@@ -49,12 +49,17 @@ function getUserInfo() {
 		
 		if(xhr.readyState == 4 && xhr.status == 200) {
 			user = JSON.parse(xhr.responseText);
-			document.getElementById("userId").innerHTML= user.
-			document.getElementById("userFn").innerHTML= user.
-			document.getElementById("userLn").innerHTML= user.
-			document.getElementById("userName").innerHTML= user.
-			document.getElementById("email").innerHTML= user.
+			document.getElementById("userId").innerHTML= user.id;
+			document.getElementById("userFn").innerHTML= user.firstname;
+			document.getElementById("userLn").innerHTML= user.lastname;
+			document.getElementById("userName").innerHTML= user.username;
+			document.getElementById("email").innerHTML= user.email;
+			
+			document.getElementById('ediStudentInfoBtn').addEventListener('click', getUserInfo, false);
 		}
 	}
+	
+	xhr.open("GET", "ajaxUserInfo", true);
+	xhr.send();
 	
 }
