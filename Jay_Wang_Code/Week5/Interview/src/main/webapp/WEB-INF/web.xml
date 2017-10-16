@@ -33,4 +33,24 @@
     <servlet-name>AjaxNavbarServlet</servlet-name>
     <url-pattern>/AjaxNavbarServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TeacherNavbarServlet</display-name>
+    <servlet-name>TeacherNavbarServlet</servlet-name>
+    <servlet-class>com.revature.servlet.teacher.TeacherNavbarServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TeacherNavbarServlet</servlet-name>
+    <url-pattern>/TeacherNavbarServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>StudentProfileViewServlet</display-name>
+    <servlet-name>StudentProfileViewServlet</servlet-name>
+    <servlet-class>com.revature.servlet.StudentProfileViewServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StudentProfileViewServlet</servlet-name>
+    <url-pattern>/StudentProfileViewServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

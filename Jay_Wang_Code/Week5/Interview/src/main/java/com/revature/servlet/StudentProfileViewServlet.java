@@ -1,4 +1,4 @@
-package com.revature.servlet.student;
+package com.revature.servlet;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class AjaxNavbarServlet
+ * Servlet implementation class StudentProfileViewServlet
  */
-@WebServlet("/studentAjaxNavbar")
-public class StudentAjaxNavbarServlet extends HttpServlet {
+@WebServlet("/ajaxStudentProfileView")
+public class StudentProfileViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public StudentAjaxNavbarServlet() {
+    public StudentProfileViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,6 +26,7 @@ public class StudentAjaxNavbarServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("features/navbar/studentNavbar.html").forward(request, response);
+		System.out.println("AjaxStudentView -GET");
+		request.getRequestDispatcher("features/view/studentView.html").forward(request,response);
 	}
 }
