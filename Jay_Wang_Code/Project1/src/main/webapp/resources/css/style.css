@@ -4,11 +4,13 @@
 	font-family: 'Modak', cursive;
 }
 
-
 body {
-	background-color: #b5e7a0;
+	background-image: url('../img/PiedPiperWall.jpeg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center; 
+    background-color: #2C8437;
 }
-
 
 #loginTitle, #employeeHomePage {
 	font-family: 'Dosis', sans-serif;
