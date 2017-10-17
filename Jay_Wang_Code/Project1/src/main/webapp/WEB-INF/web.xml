@@ -39,4 +39,24 @@
     <servlet-name>employeeHomeViewServlet</servlet-name>
     <url-pattern>/employeeHomeViewServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>getEmployeeInfoServlet</display-name>
+    <servlet-name>getEmployeeInfoServlet</servlet-name>
+    <servlet-class>com.revature.servlet.employee.getEmployeeInfoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>getEmployeeInfoServlet</servlet-name>
+    <url-pattern>/getEmployeeInfoServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>employeeInfoViewServlet</display-name>
+    <servlet-name>employeeInfoViewServlet</servlet-name>
+    <servlet-class>com.revature.servlet.employee.employeeInfoViewServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>employeeInfoViewServlet</servlet-name>
+    <url-pattern>/employeeInfoViewServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

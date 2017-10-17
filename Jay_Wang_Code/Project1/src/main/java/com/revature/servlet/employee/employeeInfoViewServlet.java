@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class employeeHomeViewServlet
+ * Servlet implementation class employeeInfoViewServlet
  */
-@WebServlet("/employeeHomeView")
-public class employeeHomeViewServlet extends HttpServlet {
+@WebServlet("/employeeInfoView")
+public class employeeInfoViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public employeeHomeViewServlet() {
+    public employeeInfoViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,7 +26,8 @@ public class employeeHomeViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("employeeHomeViewServlet -GET");
-		request.getRequestDispatcher("features/views/employeeHomeView.html").forward(request, response);
+	
+		System.out.println("employeeInfoViewServlet -GET");
+		request.getRequestDispatcher("features/views/employeeInfoView.html").forward(request, response);
 	}
 }

@@ -5,14 +5,14 @@
 }
 
 body {
-	background-image: url('../img/PiedPiperWall.jpeg');
+	background-image: url('../img/wallpaper.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center; 
-    background-color: #2C8437;
+    background-color: #F9FAF8;
 }
 
-#loginTitle, #employeeHomePage {
+#loginTitle, #employeeHomePage, #welcomeMsg {
 	font-family: 'Dosis', sans-serif;
 }
  
@@ -20,3 +20,6 @@ body {
 	font-family: 'Dosis', cursive;
 } 
 
+thead, tbody {
+	font-family: 'Dosis', sans-serif;
+}
