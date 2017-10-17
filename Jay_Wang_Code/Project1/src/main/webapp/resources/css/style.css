@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+#loginH1 {
+	font-family: 'Modak', cursive;
+}
+
+
+body {
+	background-color: #b5e7a0;
+}
+
+
+#loginTitle, #employeeHomePage {
+	font-family: 'Dosis', sans-serif;
+}
+ 
+#usernameLabel, #passwordLabel, #submitLabel {
+	font-family: 'Dosis', cursive;
+} 
+
