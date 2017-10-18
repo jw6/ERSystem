@@ -15,6 +15,7 @@ function loadNavbar() {
 			
 			document.getElementById('employeeHomePage').addEventListener('click', loadEmployeeHomeView, false);
 			document.getElementById('AccountInfo').addEventListener('click', employeeInfoView, false);
+			document.getElementById("editAccountInfo").addEventListener('click', editEmployeeInfo, false);
 		}
 	}
 
@@ -61,7 +62,8 @@ function employeeInfoView() {
 			document.getElementById("ersLn").innerHTML = employee.lastName;
 			document.getElementById("ersUser").innerHTML = employee.username;
 			document.getElementById("ersEmail").innerHTML = employee.email;
-//			document.getElementById("editEmployeeInfoBtn").addEventListener('click', editEmployeeInfo, false);
+			
+			document.getElementById("editEmployeeInfoBtn").addEventListener('click', editEmployeeInfo, false);
 		}
 	}
 	xhr.open('GET', 'employeeInfoView', true);
@@ -76,9 +78,9 @@ function editEmployeeInfo() {
 			edit = xhr.responseText;
 			document.getElementById("employeeHomeView").innerHTML = edit;
 			
-			document.getElementById("erdId").value = employee.ersId;
+			document.getElementById("ersId").value = employee.ersId;
 			document.getElementById("firstName").placeholder = employee.firstName;
-			document.getElementById("lastName").placeholder = employee.lastname;
+			document.getElementById("lastName").placeholder = employee.lastName;
 			document.getElementById("username").placeholder = employee.username;
 			
 			var hide = "";
@@ -96,11 +98,40 @@ function editEmployeeInfo() {
 	xhr.send();
 }
 
+//unverified, switch to work on reimbursement
 function updateEmployeeInfo() {
-	var id = document.getElementById("erdId").value;
+	var id = document.getElementById("ersId").value;
 	var fistName = document.getElementById("firstName").value;
 	var lastName = document.getElementById("lastName").value;
 	var username = document.getElementById("username").value;
 	var password = document.getElementById("password").value;
 	var email = document.getElementById("email").value;
+	
+	while(password == null && username == null) {
+		editEmployeeInfo();
+	}
+	
+	employee.ersId = id;
+	employee.firstName = firstName;
+	employee.lastName = lastName;
+	employee.username = username;
+	employee.email = email;
+	
+	var str = JSON.stringify(employ);
+	
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if(xhr.readyState == 4 && xhr.status == 200) {
+			if(xhr.responseText == "") {
+				EmployeeInfoView();
+			} else {
+				document.getElementById('employeeHomeView').innerHTML = xhr.responseText;
+			}
+		}
+	}
+	
+	xhr.open('POST', updateEmployeeInfo, true);
+	xhr.setRequestHeader('key', str);
+	xhr.setRequestHeader('Content-type', 'application/w-www-form-urlencoded');
+	xhr.send(str);
 }

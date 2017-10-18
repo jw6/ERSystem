@@ -25,7 +25,14 @@ public class DAOImpl implements DAO{
 
 	@Override
 	public void registerUser(ERSUser user) {
-		// TODO Auto-generated method stub
+		try(Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+			String sql = "INSERT INTO ers_user (ers_fn, ers_ln, ers_username, ers_password, ers_email) "
+					+ "VALUES (?, ?, ?, ?, ?)";
+			
+			PreparedStatement ps = conn.prepareStatement(sql);
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
 		
 	}
 
