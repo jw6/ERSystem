@@ -69,4 +69,24 @@
     <servlet-name>editEmployeeInfoServlet</servlet-name>
     <url-pattern>/editEmployeeInfoServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>updateEmployeeInfo</display-name>
+    <servlet-name>updateEmployeeInfo</servlet-name>
+    <servlet-class>com.revature.servlet.employee.updateEmployeeInfo</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>updateEmployeeInfo</servlet-name>
+    <url-pattern>/updateEmployeeInfo</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>reimbursementRequestServlet</display-name>
+    <servlet-name>reimbursementRequestServlet</servlet-name>
+    <servlet-class>com.revature.servlet.employee.reimbursementRequestServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>reimbursementRequestServlet</servlet-name>
+    <url-pattern>/reimbursementRequestServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

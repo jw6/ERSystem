@@ -16,6 +16,8 @@ function loadNavbar() {
 			document.getElementById('employeeHomePage').addEventListener('click', loadEmployeeHomeView, false);
 			document.getElementById('AccountInfo').addEventListener('click', employeeInfoView, false);
 			document.getElementById("editAccountInfo").addEventListener('click', editEmployeeInfo, false);
+			
+//			document.getElementById("newReimbursementbRequest").addEventListener('click', newReimbursementView, false);
 		}
 	}
 
@@ -91,7 +93,7 @@ function editEmployeeInfo() {
 			
 			document.getElementById("password").placeholder = hide;
 			document.getElementById("email").placeholder = employee.email;
-//			document.getElementById("confirmBtn").addEventListener('click', updateEmployeeInfo, false); 
+			document.getElementById("confirmBtn").addEventListener('click', updateEmployeeInfo, false); 
 		}
 	}
 	xhr.open('GET', 'editEmployeeInfo', true);
@@ -101,7 +103,7 @@ function editEmployeeInfo() {
 //unverified, switch to work on reimbursement
 function updateEmployeeInfo() {
 	var id = document.getElementById("ersId").value;
-	var fistName = document.getElementById("firstName").value;
+	var firstName = document.getElementById("firstName").value;
 	var lastName = document.getElementById("lastName").value;
 	var username = document.getElementById("username").value;
 	var password = document.getElementById("password").value;
@@ -115,23 +117,38 @@ function updateEmployeeInfo() {
 	employee.firstName = firstName;
 	employee.lastName = lastName;
 	employee.username = username;
+	employee.password = password;
 	employee.email = email;
 	
-	var str = JSON.stringify(employ);
+	var str = JSON.stringify(employee);
 	
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function() {
 		if(xhr.readyState == 4 && xhr.status == 200) {
 			if(xhr.responseText == "") {
-				EmployeeInfoView();
+				employeeInfoView();
 			} else {
 				document.getElementById('employeeHomeView').innerHTML = xhr.responseText;
+				editEmployeeInfo()
 			}
 		}
 	}
 	
-	xhr.open('POST', updateEmployeeInfo, true);
+	xhr.open('POST', 'updateEmployeeInfo', true);
 	xhr.setRequestHeader('key', str);
-	xhr.setRequestHeader('Content-type', 'application/w-www-form-urlencoded');
+	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 	xhr.send(str);
+}
+
+function newReimbursementView() {
+	var xhr = new XMLHttpRequest();
+	
+	xhr.openreadystatechange = function() {
+		if(xhr.readyState == 4 && xhr.status == 200) {
+			var rbView = xhr.responseText;
+			document.getElementById('employeeHomeView').innerHTML = rbView;
+		}
+	}
+	xhr.open('GET', 'newReimbursementbRequest', true);
+	xhr.send();
 }

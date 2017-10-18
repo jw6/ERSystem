@@ -26,7 +26,7 @@ public interface DAO {
 	public ERSUser getAllReimbursementByEmployee(ERSUser user);
 	public ERSUser getEmployeeByReimbursement(Reimbursement rb);
 	
-	public void updateEmployeeInfo(ERSUser user);
+	public int updateEmployeeInfo(ERSUser user);
 	public void updateReimbursementStatus(Reimbursement rb);
 	
 }

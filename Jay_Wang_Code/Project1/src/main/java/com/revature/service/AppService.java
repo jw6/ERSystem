@@ -5,8 +5,10 @@ import com.revature.dao.DAO;
 import com.revature.dao.DAOImpl;
 
 public class AppService {
+	
+	DAO dao = new DAOImpl();
+	
 	public ERSUser validateUser(ERSUser clientUser) {
-		DAO dao = new DAOImpl();
 		
 		ERSUser dbUser = dao.getUserByUsername(clientUser);
 		if(dbUser != null) {
@@ -17,5 +19,9 @@ public class AppService {
 			}
 		}
 		return null;
+	}
+	
+	public int updateEmployeeInfo(ERSUser clientUser) {
+		return dao.updateEmployeeInfo(clientUser);
 	}
 }
