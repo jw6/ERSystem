@@ -74,9 +74,33 @@ function editEmployeeInfo() {
 	xhr.onreadystatechange = function() {
 		if(xhr.readyState == 4 && xhr.status == 200) {
 			edit = xhr.responseText;
-			document.getElementById("editEmployeeInfoBtn").innerHTML = edit;
+			document.getElementById("employeeHomeView").innerHTML = edit;
+			
+			document.getElementById("erdId").value = employee.ersId;
+			document.getElementById("firstName").placeholder = employee.firstName;
+			document.getElementById("lastName").placeholder = employee.lastname;
+			document.getElementById("username").placeholder = employee.username;
+			
+			var hide = "";
+			
+			for(var i = 0; i < employee.password.length; i++) {
+				hide += "*";
+			}
+			
+			document.getElementById("password").placeholder = hide;
+			document.getElementById("email").placeholder = employee.email;
+//			document.getElementById("confirmBtn").addEventListener('click', updateEmployeeInfo, false); 
 		}
 	}
 	xhr.open('GET', 'editEmployeeInfo', true);
 	xhr.send();
+}
+
+function updateEmployeeInfo() {
+	var id = document.getElementById("erdId").value;
+	var fistName = document.getElementById("firstName").value;
+	var lastName = document.getElementById("lastName").value;
+	var username = document.getElementById("username").value;
+	var password = document.getElementById("password").value;
+	var email = document.getElementById("email").value;
 }
