@@ -132,8 +132,12 @@ SELECT * FROM reimbursement_type;
 INSERT INTO reimbursement_type (rbt_type) VALUES('Fee');
 INSERT INTO reimbursement_type (rbt_type) VALUES('Hotel');
 INSERT INTO reimbursement_type (rbt_type) VALUES('Food');
+INSERT INTO reimbursement_type (rbt_type) VALUES('Travel');
+
 /
 INSERT INTO reimbursement (rb_id, ers_id, st_id, manager_id, rbt_id, rb_amount, rb_submitted, rb_resolved, rb_description, rb_receipt) 
                     VALUES(1, 1, 1, 2, 1, 100, current_timestamp, null, 'AWS bill', TO_BLOB(null) );
 INSERT INTO reimbursement ( ers_id, st_id, manager_id, rbt_id, rb_amount, rb_submitted, rb_resolved, rb_description, rb_receipt) 
                     VALUES( 1, 1, 2, 1, 232.2, current_timestamp, null, 'AWS bill', TO_BLOB(null) );
+                    
+SELECT * FROM ers_user where ers_id = 1;

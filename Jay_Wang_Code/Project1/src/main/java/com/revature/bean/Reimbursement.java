@@ -25,6 +25,14 @@ public class Reimbursement implements Serializable {
 		super();
 	}
 
+	public Reimbursement(int rbId, double rbAmount, int rbtId, String description) {
+		super();
+		this.rbId = rbId;
+		this.rbAmount = rbAmount;
+		this.rbtId = rbtId;
+		this.description = description;
+	}
+
 	public Reimbursement(int rbId, double rbAmount, Blob rbReceipt, int ersId, int stId, int managerId, int rbtId,
 			String rbSubmitted, String rbResolved, String description) {
 		super();

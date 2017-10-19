@@ -89,4 +89,14 @@
     <servlet-name>reimbursementRequestServlet</servlet-name>
     <url-pattern>/reimbursementRequestServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>submitRequestBtnServlet</display-name>
+    <servlet-name>submitRequestBtnServlet</servlet-name>
+    <servlet-class>com.revature.servlet.employee.submitRequestBtnServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>submitRequestBtnServlet</servlet-name>
+    <url-pattern>/submitRequestBtnServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

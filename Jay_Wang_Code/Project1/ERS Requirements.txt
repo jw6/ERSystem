@@ -8,7 +8,7 @@ Theme: e.g. Java Duke
 -An Employee can view their pending reimbursement requests
 -An Employee can view their resolved reimbursement requests
 	-An Employee can view their information
--An Employee can update their information
+	-An Employee can update their information
 -An Employee receives an email when one of their reimbursement requests is resolved (optional)
 	
 	-A Manager can login

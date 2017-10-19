@@ -1,6 +1,7 @@
 package com.revature.service;
 
 import com.revature.bean.ERSUser;
+import com.revature.bean.Reimbursement;
 import com.revature.dao.DAO;
 import com.revature.dao.DAOImpl;
 
@@ -23,5 +24,9 @@ public class AppService {
 	
 	public int updateEmployeeInfo(ERSUser clientUser) {
 		return dao.updateEmployeeInfo(clientUser);
+	}
+	
+	public int submitRequest(Reimbursement rb) {
+		return dao.createReimbursement(rb);
 	}
 }

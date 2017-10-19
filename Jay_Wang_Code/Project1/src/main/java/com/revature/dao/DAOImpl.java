@@ -47,7 +47,7 @@ public class DAOImpl implements DAO{
 	}
 
 	@Override
-	public void createReimbursement(Reimbursement rb) {
+	public int createReimbursement(Reimbursement rb) {
 		try(Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
 			String sql = "INSERT INTO reimbursement (ers_id, rbt_id, rb_amount, rb_description) "  
 					      + "VALUES(?, ?, ?, ?)";
@@ -56,10 +56,11 @@ public class DAOImpl implements DAO{
 			ps.setInt(2, rb.getRbtId());
 			ps.setDouble(3, rb.getRbAmount());
 			ps.setString(4, rb.getDescription());
-			
-			ps.executeUpdate();
+			int status = ps.executeUpdate();
+			return status;
 		} catch(SQLException e) {
 			e.printStackTrace();
+			return 0;
 		}
 	}
 

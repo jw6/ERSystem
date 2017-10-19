@@ -17,7 +17,7 @@ function loadNavbar() {
 			document.getElementById('AccountInfo').addEventListener('click', employeeInfoView, false);
 			document.getElementById("editAccountInfo").addEventListener('click', editEmployeeInfo, false);
 			
-//			document.getElementById("newReimbursementbRequest").addEventListener('click', newReimbursementView, false);
+			document.getElementById("newReimbursementbRequest").addEventListener('click', newReimbursementView, false);
 		}
 	}
 
@@ -142,13 +142,67 @@ function updateEmployeeInfo() {
 
 function newReimbursementView() {
 	var xhr = new XMLHttpRequest();
-	
-	xhr.openreadystatechange = function() {
-		if(xhr.readyState == 4 && xhr.status == 200) {
-			var rbView = xhr.responseText;
-			document.getElementById('employeeHomeView').innerHTML = rbView;
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			document.getElementById('employeeHomeView').innerHTML = xhr.responseText;
+			document.getElementById('submitRequestBtn').addEventListener('click', submitRequestBtn, false);
 		}
 	}
 	xhr.open('GET', 'newReimbursementbRequest', true);
 	xhr.send();
+}
+
+var request = null;
+function submitRequestBtn() {
+	var xhr = new XMLHttpRequest();
+	
+	var ersId = document.getElementById('ersId').value;
+	var amount = document.getElementById('amount').value;
+	var rbType = document.getElementById('rbType').value;
+	
+	for(var i = 0; i < rbType.length; i++){
+		if(rbType[i].selected){
+			rbType = rbType[i].innerText;
+			break;
+		}
+	}
+	if(rbType == "Fee") {
+		rbType = 1;
+	} else if(rbType == "Hotel") {
+		rbType = 2;
+	} else if(rbType == "Food") {
+		rbType = 3;
+	} else if(rbType == "Travel") {
+		rbType = 4;
+	} else {
+		rbType = 0;
+	}
+	
+	var description = document.getElementById("rbDescription").value;
+	var rbRequest = {
+			ersId: ersId,
+			rbAmount: amount,
+			rbtId: rbType,
+			description: description
+	}
+	console.log(rbRequest);
+	var str = JSON.stringify(rbRequest);
+	console.log(str);
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			if(xhr.responseText == ""){
+				loadEmployeeHomeView();
+			}else{
+				document.getElementById('employeeHomeView').innerHTML = xhr.responseText;
+				newReimbursementView();
+			}
+		}
+	}
+
+	xhr.open('POST', 'submitRequestBtn', true);
+	xhr.setRequestHeader('key', str);
+	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	xhr.send(str);
+	
 }

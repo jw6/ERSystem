@@ -15,7 +15,7 @@ public interface DAO {
 	 * CRUD methods only
 	 */
 	public void registerUser(ERSUser user);
-	public void createReimbursement(Reimbursement rb);
+	public int createReimbursement(Reimbursement rb);
 	
 	public ERSUser getUserByUsername(ERSUser user);
 	public ERSUser getUserById(int ersId);
