@@ -99,4 +99,24 @@
     <servlet-name>submitRequestBtnServlet</servlet-name>
     <url-pattern>/submitRequestBtnServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>viewReimbursementServlet</display-name>
+    <servlet-name>viewReimbursementServlet</servlet-name>
+    <servlet-class>com.revature.servlet.employee.viewReimbursementServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>viewReimbursementServlet</servlet-name>
+    <url-pattern>/viewReimbursementServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>loadReimbursementServlet</display-name>
+    <servlet-name>loadReimbursementServlet</servlet-name>
+    <servlet-class>com.revature.servlet.employee.loadReimbursementServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>loadReimbursementServlet</servlet-name>
+    <url-pattern>/loadReimbursementServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -1,5 +1,7 @@
 package com.revature.service;
 
+import java.util.List;
+
 import com.revature.bean.ERSUser;
 import com.revature.bean.Reimbursement;
 import com.revature.dao.DAO;
@@ -29,4 +31,9 @@ public class AppService {
 	public int submitRequest(Reimbursement rb) {
 		return dao.createReimbursement(rb);
 	}
+	
+	public List<Reimbursement> getAllReimbursements(){
+		return dao.getAllReimbursements();
+	}
+	
 }

@@ -18,6 +18,7 @@ function loadNavbar() {
 			document.getElementById("editAccountInfo").addEventListener('click', editEmployeeInfo, false);
 			
 			document.getElementById("newReimbursementbRequest").addEventListener('click', newReimbursementView, false);
+			document.getElementById("viewReimbursementHistory").addEventListener('click', viewReimbursement, false)
 		}
 	}
 
@@ -204,5 +205,116 @@ function submitRequestBtn() {
 	xhr.setRequestHeader('key', str);
 	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 	xhr.send(str);
+}
+
+
+function viewReimbursement() {
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200) {
+			var info =xhr.responseText;
+			document.getElementById('employeeHomeView').innerHTML = info;
+			console.log("testing1");
+			loadReimbursement();
+			
+		}
+	}
+	xhr.open('GET', 'viewReimbursement', true);
+	xhr.send();
+}
+var rbHistory;
+function loadReimbursement() {
+	console.log("testing");
+	var xhr = new XMLHttpRequest();
 	
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200) {
+		
+			rbHistory = JSON.parse(xhr.responseText);
+			console.log('test');
+			var row = null;
+			var rb_Id, rb_Amount, rb_Receipt, ers_Id, st_Id, manager_Id, rbt_Id, rb_Submitted, rb_Resolved, rb_Description;
+			for(var i=0; i < rbHistory.length; i++){
+				
+				rb_Id = document.createElement('TD');
+				rb_Id.innerText = rbHistory[i].rbId;
+				document.getElementById("rb_Id").appendChild(rb_Id);
+				document.getElementById("rb_Id").appendChild(document.createElement("br"));
+				
+				rb_Amount = document.createElement('TD');
+				rb_Amount.innerText = rbHistory[i].rbAmount;
+				document.getElementById("rb_Amount").appendChild(rb_Amount);
+				document.getElementById("rb_Amount").appendChild(document.createElement("br"));
+				
+				rbt_Id = document.createElement('TD');
+				switch(rbHistory[i].rbtId){
+				case 1:
+					rbt_Id.innerText = "Fee";
+					break;
+				case 2:
+					rbt_Id.innerText = "Hotel";
+					break;
+				case 3:
+					rbt_Id.innerText = "Food";
+					break;
+				case 4:
+					rbt_Id.innerText = "Travel";
+					break;
+				default:
+					rbt_Id.innerText = "N/A";
+					break;
+				}
+				document.getElementById("rbt_Id").appendChild(rbt_Id);
+				document.getElementById("rbt_Id").appendChild(document.createElement("br"));
+				
+				st_Id = document.createElement('TD');
+				switch(rbHistory[i].stId){
+				case 1: 
+					st_Id.innerText = "Pending";
+					break;
+				case 2: 
+					st_Id.innerText = "Approved";
+					break;
+				case 3:
+					st_Id.innerText = "Denied";
+					break;
+				default:
+					st_Id.innerText = "N/A";
+					break;
+				}
+				document.getElementById("st_Id").appendChild(st_Id);
+				document.getElementById("st_Id").appendChild(document.createElement("br"));
+				
+				manager_Id = document.createElement('TD');
+				manager_Id.innerText = rbHistory[i].managerId;
+				document.getElementById("manager_Id").appendChild(manager_Id);
+				document.getElementById("manager_Id").appendChild(document.createElement("br"));
+				
+				
+				rb_Submitted = document.createElement('TD');
+				rb_Submitted.innerText = rbHistory[i].rbSubmitted;
+				document.getElementById("rb_Submitted").appendChild(rb_Submitted);
+				document.getElementById("rb_Submitted").appendChild(document.createElement("br"));
+				
+				rb_Resolved = document.createElement('TD');
+				rb_Resolved.innerText = rbHistory[i].rbResolved;
+				document.getElementById("rb_Resolved").appendChild(rb_Resolved);
+				document.getElementById("rb_Resolved").appendChild(document.createElement("br"));
+				
+				rb_Receipt = document.createElement('TD');
+				rb_Receipt.innerText = rbHistory[i].rbReceipt;
+				document.getElementById("rb_Receipt").appendChild(rb_Receipt);
+				document.getElementById("rb_Receipt").appendChild(document.createElement("br"));
+				
+				
+				rb_Description = document.createElement('TD');
+				rb_Description.innerText = rbHistory[i].description;
+				document.getElementById("rb_Description").appendChild(rb_Description);
+				document.getElementById("rb_Description").appendChild(document.createElement("br"));
+				
+			}
+		}
+	}
+	xhr.open('GET', 'loadReimbursement', true);
+	xhr.send();
 }

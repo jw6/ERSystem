@@ -151,9 +151,40 @@ public class DAOImpl implements DAO{
 	}
 
 	@Override
-	public List<Reimbursement> getAllReimbursement() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Reimbursement> getAllReimbursements() {
+		List<Reimbursement> rbs = new ArrayList<>();
+		Reimbursement rb = null;
+		
+		try(Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+			String sql = "SELECT * FROM reimbursement";
+			
+			PreparedStatement ps = conn.prepareStatement(sql);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				rb = new Reimbursement();
+				rb.setRbId(rs.getInt(1));
+				rb.setErsId(rs.getInt(2));
+				rb.setStId(rs.getInt(3));
+				rb.setManagerId(rs.getInt(4));
+				rb.setRbtId(rs.getInt(5));
+				rb.setRbAmount(rs.getDouble(6));
+				rb.setRbSubmitted(rs.getString(7));
+				rb.setRbResolved(rs.getString(8));
+				rb.setDescription(rs.getString(9));
+				
+				rbs.add(rb);
+			}
+			for(Reimbursement reimb : rbs) {
+				System.err.println(reimb.toString());
+			}
+			return rbs;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}		
 	}
 
 	@Override
