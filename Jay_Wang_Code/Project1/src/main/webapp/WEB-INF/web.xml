@@ -159,4 +159,34 @@
     <servlet-name>searchEmployeeServlet</servlet-name>
     <url-pattern>/searchEmployeeServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>searchResultViewServlet</display-name>
+    <servlet-name>searchResultViewServlet</servlet-name>
+    <servlet-class>com.revature.servlet.manager.searchResultViewServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>searchResultViewServlet</servlet-name>
+    <url-pattern>/searchResultViewServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>getRbByEmployeeServlet</display-name>
+    <servlet-name>getRbByEmployeeServlet</servlet-name>
+    <servlet-class>com.revature.servlet.manager.getRbByEmployeeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>getRbByEmployeeServlet</servlet-name>
+    <url-pattern>/getRbByEmployeeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>getAllManagersServlet</display-name>
+    <servlet-name>getAllManagersServlet</servlet-name>
+    <servlet-class>com.revature.servlet.manager.getAllManagersServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>getAllManagersServlet</servlet-name>
+    <url-pattern>/getAllManagersServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

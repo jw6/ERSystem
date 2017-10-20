@@ -20,7 +20,6 @@ public interface DAO {
 	public ERSUser getUserByUsername(ERSUser user);
 	public ERSUser getUserById(int ersId);
 	
-	public List<ERSUser> getAllEmployees();
 	public List<Reimbursement> getAllReimbursements();
 	
 	public ERSUser getAllReimbursementByEmployee(ERSUser user);
@@ -28,5 +27,13 @@ public interface DAO {
 	
 	public int updateEmployeeInfo(ERSUser user);
 	public void updateReimbursementStatus(Reimbursement rb);
+	public List<Reimbursement> getReimbursementsByEmployee(ERSUser employee);
 	
+	public List<ERSUser> getAllUser();
+	public List<ERSUser> getAllEmployees();
+	public List<ERSUser> getAllManagers();
+    public int updateReimbursement(Reimbursement rb);
+    
+    
+    
 }

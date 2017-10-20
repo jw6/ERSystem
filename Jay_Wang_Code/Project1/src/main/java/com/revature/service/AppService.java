@@ -36,4 +36,12 @@ public class AppService {
 		return dao.getAllReimbursements();
 	}
 	
+	public List<Reimbursement> getReimbursementsByEmployee(ERSUser employee){
+		return dao.getReimbursementsByEmployee(employee);
+	}
+	
+	public List<ERSUser> getAllManagers() {
+		return dao.getAllManagers();
+	}
+	
 }

@@ -1,10 +1,13 @@
 package com.revature.dao;
 
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -225,9 +228,125 @@ public class DAOImpl implements DAO{
 	}
 
 	@Override
-	public void updateReimbursementStatus(Reimbursement rb) {
-		// TODO Auto-generated method stub
+	public List<Reimbursement> getReimbursementsByEmployee(ERSUser employee) {
+		List<Reimbursement> rbs = new ArrayList<>();
+		Blob blob = null;
 		
+		try(Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)){
+			String sql = "SELECT * FROM reimbursement WHERE ers_id = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, employee.getErsId());
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				Reimbursement rb = new Reimbursement();
+				rb.setRbId(rs.getInt("rb_id"));
+				rb.setErsId(rs.getInt("ers_id"));
+				rb.setStId(rs.getInt("st_id"));
+				rb.setManagerId(rs.getInt("manager_id"));
+				
+				rb.setRbtId(rs.getInt("rbt_id"));
+				
+				
+				rb.setRbAmount(rs.getDouble("rb_amount"));
+				
+				rb.setRbSubmitted(rs.getTimestamp("rb_submitted").toString());
+				
+				if(rs.getTimestamp("rb_resolved") != null) {
+					rb.setRbResolved(rs.getTimestamp("rb_resolved").toString());
+				}
+
+				rb.setDescription(rs.getString("rb_description"));
+				blob = rs.getBlob("rb_receipt");
+				if(blob != null) {
+					rb.setRbReceipt(blob);
+				}
+				
+				rbs.add(rb);
+				rb = null;
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return rbs;
 	}
 
+	@Override
+	public List<ERSUser> getAllUser() {
+		List<ERSUser> users = new ArrayList<>();
+		ERSUser user = new ERSUser();
+
+		try(Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+			String sql = "SELECT * FROM ERS_USER";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				user.setErsId(rs.getInt(1));
+				user.setFirstName(rs.getString(2));
+				user.setLastName(rs.getString(3));
+				user.setUsername(rs.getString(4));
+				user.setPassword(rs.getString(5));
+				user.setRtId(rs.getInt(6));
+				user.setEmail(rs.getString(7));
+				users.add(user);
+			}
+			return users;
+		} catch(SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public List<ERSUser> getAllManagers() {
+		List<ERSUser> managers = new ArrayList<>();
+		ERSUser user = new ERSUser();
+
+		try(Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+			String sql = "SELECT * FROM ERS_USER WHERE rt_id = 2";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+
+			while(rs.next()) {
+				user.setErsId(rs.getInt(1));
+				user.setFirstName(rs.getString(2));
+				user.setLastName(rs.getString(3));
+				user.setUsername(rs.getString(4));
+				user.setPassword(rs.getString(5));
+				user.setRtId(rs.getInt(6));
+				user.setEmail(rs.getString(7));
+				managers.add(user);
+			}
+			return managers;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public int updateReimbursement(Reimbursement rb) {
+		try(Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+			String sql = "UPDATE reimbursement SET st_id = ?, manager_id = ?, rb_resolved = ? WHERE rb_id = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, rb.getStId());
+			ps.setInt(2, rb.getManagerId());
+			ps.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
+			ps.setInt(4,  rb.getRbId());
+
+			return ps.executeUpdate();
+
+		} catch(SQLException e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	
+	@Override
+	public void updateReimbursementStatus(Reimbursement rb) {
+		
+		
+	}
 }
+
+
