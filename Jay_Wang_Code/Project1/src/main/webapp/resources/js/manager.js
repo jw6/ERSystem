@@ -12,13 +12,158 @@ function loadNavbar() {
 			document.getElementById('viewAllRbs').addEventListener('click', loadAllReimbursementsView, false);
 			document.getElementById('viewAllEmployees').addEventListener('click', loadAllEmployeesView, false);
 			document.getElementById('searchByEmployee').addEventListener('click', loadSearchByEmployee, false);
-//			document.getElementById('allPending').addEventListener('click', loadAllPendingView, false);
+			document.getElementById('allPending').addEventListener('click', loadAllPendingView, false);
 //			document.getElementById('allResolved').addEventListener('click', loadAllResolvedView, false);
 		
 		}
 	}
 	xhr.open('GET', 'loadManagerNavbar', true);
 	xhr.send();
+}
+
+function loadAllPendingView(){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			document.getElementById('managerHomeView').innerHTML = xhr.responseText;
+			getAllPendingRequests();
+
+		}
+	}
+	xhr.open('GET', 'viewAllPendingRequest', true);
+	xhr.send();
+}
+
+function getAllPendingRequests(){
+	var xhr = new XMLHttpRequest();
+	var pendingRbs = null;
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			pendingRbs = JSON.parse(xhr.responseText);
+
+			var rbId, ersId, rbAmount, rbType, rbSubmit, rbDescription;
+			var row = null, aTD = null, dTD = null, s = null;
+			var aButton = [], dButton = [];
+			for(var i=0; i < pendingRbs.length; i++){
+				row = document.createElement('TR');
+
+				rbId = document.createElement('TD');
+				rbId.innerText = pendingRbs[i].rbId;
+				row.appendChild(rbId);
+
+				getEmployeeName(pendingRbs[i].ersId, row);
+
+				rbAmount = document.createElement('TD');
+				rbAmount.innerText = pendingRbs[i].rbAmount;
+				row.appendChild(rbAmount);
+
+				rbType = document.createElement('TD');
+				switch(pendingRbs[i].rbtId){
+					case 1:
+						rbType.innerText = "Fee";
+						break;
+					case 2:
+						rbType.innerText = "Hotel";
+						break;
+					case 3:
+						rbType.innerText = "Food";
+						break;
+					case 4:
+						rbType.innerText = "Travel";
+						break;
+					default:
+						rbType.innerText = "N/A";
+						break;
+				}
+				row.appendChild(rbType);
+
+				rbSubmit = document.createElement('TD');
+				rbSubmit.innerText = pendingRbs[i].rbSubmitted;
+				row.appendChild(rbSubmit);
+
+				rbDescription = document.createElement('TD');
+				rbDescription.innerText = pendingRbs[i].description;
+				row.appendChild(rbDescription);
+
+				aTD = document.createElement('TD');
+				aButton[i] = document.createElement('button');
+				aButton[i].innerText = 'Approve';
+				aTD.appendChild(aButton[i]);
+				row.appendChild(aTD);
+
+				dTD = document.createElement('TD');
+				dButton[i] = document.createElement('button');
+				dButton[i].innerText = 'Deny';
+				dTD.appendChild(dButton[i]);
+				row.appendChild(dTD);
+
+				document.getElementById('allPendingEntries').appendChild(row);
+				(function(){
+				var s = pendingRbs[i];
+
+				aButton[i].addEventListener('click', function(){processApproval(s)}, false);
+				dButton[i].addEventListener('click', function(){processDenial(s)}, false);
+				console.log(aButton[i]);
+				}());
+			}
+		}
+	}
+	xhr.open('GET', 'getAllPendingRequests', true);
+	xhr.send();
+}
+
+function getEmployeeName(ersId, row){
+	var xhr = new XMLHttpRequest();
+	var employees = null;
+	var employee = null;
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			employees = JSON.parse(xhr.responseText);
+			for(var i=0; i < employees.length; i++){
+				if(employees[i].ersId == ersId){
+					employee = document.createElement('TD');
+					employee.innerText = employees[i].firstName + ' ' + employees[i].lastName;
+					row.appendChild(employee);
+					break;
+				}
+			}
+		}
+	}
+	xhr.open('GET', 'getAllEmployees', false);
+	xhr.send();
+}
+
+function processApproval(a){
+	a.stId = 2;
+
+	var approval = JSON.stringify(a);
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			loadAllPendingView();
+		}
+	}
+	xhr.open('POST', 'processApproval', true);
+	xhr.setRequestHeader('key', approval);
+	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	xhr.send(approval);
+
+}
+
+function processDenial(d){
+	d.stId = 3;
+
+	var denial = JSON.stringify(d);
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			loadAllPendingView();
+		}
+	}
+	xhr.open('POST', 'processDenial', true);
+	xhr.setRequestHeader('key', denial);
+	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	xhr.send(denial);
 }
 
 function loadAllReimbursementsView() {

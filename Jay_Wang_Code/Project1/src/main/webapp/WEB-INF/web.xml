@@ -229,4 +229,44 @@
     <servlet-name>getAllReimbursementsServlet</servlet-name>
     <url-pattern>/getAllReimbursementsServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>viewAllPendingRequestServlet</display-name>
+    <servlet-name>viewAllPendingRequestServlet</servlet-name>
+    <servlet-class>com.revature.servlet.manager.viewAllPendingRequestServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>viewAllPendingRequestServlet</servlet-name>
+    <url-pattern>/viewAllPendingRequestServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>getAllPendingRequestsServlet</display-name>
+    <servlet-name>getAllPendingRequestsServlet</servlet-name>
+    <servlet-class>com.revature.servlet.manager.getAllPendingRequestsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>getAllPendingRequestsServlet</servlet-name>
+    <url-pattern>/getAllPendingRequestsServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>processApprovalServlet</display-name>
+    <servlet-name>processApprovalServlet</servlet-name>
+    <servlet-class>com.revature.servlet.manager.processApprovalServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>processApprovalServlet</servlet-name>
+    <url-pattern>/processApprovalServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>processDenialServlet</display-name>
+    <servlet-name>processDenialServlet</servlet-name>
+    <servlet-class>com.revature.servlet.manager.processDenialServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>processDenialServlet</servlet-name>
+    <url-pattern>/processDenialServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

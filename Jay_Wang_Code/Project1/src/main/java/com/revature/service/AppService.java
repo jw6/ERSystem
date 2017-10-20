@@ -49,4 +49,8 @@ public class AppService {
 		return dao.getAllEmployees();
 	}
 	
+	public int updateReimbursementStatus(Reimbursement rb) {
+		return dao.updateReimbursement(rb);
+	}
+	
 }
