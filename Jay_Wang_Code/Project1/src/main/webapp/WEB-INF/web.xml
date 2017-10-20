@@ -209,4 +209,24 @@
     <servlet-name>getAllEmployeesServlet</servlet-name>
     <url-pattern>/getAllEmployeesServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>viewAllReimbursementsServlet</display-name>
+    <servlet-name>viewAllReimbursementsServlet</servlet-name>
+    <servlet-class>com.revature.servlet.manager.viewAllReimbursementsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>viewAllReimbursementsServlet</servlet-name>
+    <url-pattern>/viewAllReimbursementsServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>getAllReimbursementsServlet</display-name>
+    <servlet-name>getAllReimbursementsServlet</servlet-name>
+    <servlet-class>com.revature.servlet.manager.getAllReimbursementsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>getAllReimbursementsServlet</servlet-name>
+    <url-pattern>/getAllReimbursementsServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

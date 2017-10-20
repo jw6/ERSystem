@@ -9,7 +9,7 @@ function loadNavbar() {
 		if(xhr.readyState == 4 && xhr.status == 200){
 			document.getElementById('managerNavbar').innerHTML = xhr.responseText;
 			document.getElementById('managerHomePage').addEventListener('click', managerHomeView, false);
-//			document.getElementById('viewAllRbs').addEventListener('click', loadAllReimbursementsView, false);
+			document.getElementById('viewAllRbs').addEventListener('click', loadAllReimbursementsView, false);
 			document.getElementById('viewAllEmployees').addEventListener('click', loadAllEmployeesView, false);
 			document.getElementById('searchByEmployee').addEventListener('click', loadSearchByEmployee, false);
 //			document.getElementById('allPending').addEventListener('click', loadAllPendingView, false);
@@ -18,6 +18,124 @@ function loadNavbar() {
 		}
 	}
 	xhr.open('GET', 'loadManagerNavbar', true);
+	xhr.send();
+}
+
+function loadAllReimbursementsView() {
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			document.getElementById('managerHomeView').innerHTML = xhr.responseText;
+			getAllReimbursements();
+		}
+	}
+	xhr.open('GET', 'viewAllReimbursements', true);
+	xhr.send();
+}
+
+function getAllReimbursements() {
+		var xhr = new XMLHttpRequest();
+	var rbs = null;
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			rbs = JSON.parse(xhr.responseText);
+
+			var row;
+			var rbId, employee, rbAmount, rbType, rbStatus, manager, rbSubmit, rbResolve, rbReceipt, rbDescription;
+			for(var i=0; i < rbs.length; i++){
+				row = document.createElement('TR');
+
+				rbId = document.createElement('TD');
+				rbId.innerText = rbs[i].rbId;
+				row.appendChild(rbId);
+
+				getEmployees(rbs[i].ersId, row);
+
+				rbAmount = document.createElement('TD');
+				rbAmount.innerText = rbs[i].rbAmount;
+				row.appendChild(rbAmount);
+
+				rbType = document.createElement('TD');
+				switch(rbs[i].rbtId){
+				case 1:
+					rbType.innerText = "Fee";
+					break;
+				case 2:
+					rbType.innerText = "Hotel";
+					break;
+				case 3:
+					rbType.innerText = "Food";
+					break;
+				case 4:
+					rbType.innerText = "Travel";
+					break;
+				default:
+					rbType.innerText = "N/A";
+					break;
+				}
+				row.appendChild(rbType);
+
+				rbStatus = document.createElement('TD');
+				switch(rbs[i].stId){
+				case 1:
+					rbStatus.innerText = "Pending";
+					break;
+				case 2:
+					rbStatus.innerText = "Approved";
+					break;
+				case 3:
+					rbStatus.innerText = "Denied";
+					break;
+				default:
+					rbStatus.innerText = "N/A";
+					break;
+				}
+				row.appendChild(rbStatus);
+
+
+				getManager(rbs[i].managerId, row);
+
+				rbSubmit = document.createElement('TD');
+				rbSubmit.innerText = rbs[i].rbSubmitted;
+				row.appendChild(rbSubmit);
+
+				rbResolve = document.createElement('TD');
+				rbResolve.innerText = rbs[i].rbResolved;
+				row.appendChild(rbResolve);
+
+				rbReceipt = document.createElement('TD');
+				rbReceipt.innerText = rbs[i].rbReceipt;
+				row.appendChild(rbReceipt);
+
+				rbDescription = document.createElement('TD');
+				rbDescription.innerText = rbs[i].description
+				row.appendChild(rbDescription);
+
+				document.getElementById('allRbEntries').appendChild(row);
+			}
+		}
+	}
+	xhr.open('GET', 'getAllReimbursements', true);
+	xhr.send();
+}
+
+function getEmployees(ersId, row){
+	var xhr = new XMLHttpRequest();
+	var employees = null;
+	var employee = null;
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			employees = JSON.parse(xhr.responseText);
+			for(var i=0; i < employees.length; i++){
+				if(ersId == employees[i].ersId){
+					employee = document.createElement('TD');
+					employee.innerText = employees[i].firstName + " " + employees[i].lastName;
+					row.appendChild(employee);
+				}
+			}
+		}
+	}
+	xhr.open('GET', 'getAllEmployees', false);
 	xhr.send();
 }
 

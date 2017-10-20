@@ -16,6 +16,10 @@ body {
 	background-color: #F9FAF8;
 }
 
+#displayAll {
+	background-color: #F9FAF8;
+}
+
 #loginTitle, #employeeHomePage, #managerHomePage, #welcomeMsg {
 	font-family: 'Dosis', sans-serif;
 }
