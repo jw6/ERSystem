@@ -119,4 +119,44 @@
     <servlet-name>loadReimbursementServlet</servlet-name>
     <url-pattern>/loadReimbursementServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>loadManagerNavbar</display-name>
+    <servlet-name>loadManagerNavbar</servlet-name>
+    <servlet-class>com.revature.servlet.manager.loadManagerNavbar</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>loadManagerNavbar</servlet-name>
+    <url-pattern>/loadManagerNavbar</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>managerHomeViewServlet</display-name>
+    <servlet-name>managerHomeViewServlet</servlet-name>
+    <servlet-class>com.revature.servlet.manager.managerHomeViewServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>managerHomeViewServlet</servlet-name>
+    <url-pattern>/managerHomeViewServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>getManagerInfoServlet</display-name>
+    <servlet-name>getManagerInfoServlet</servlet-name>
+    <servlet-class>com.revature.servlet.manager.getManagerInfoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>getManagerInfoServlet</servlet-name>
+    <url-pattern>/getManagerInfoServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>searchEmployeeServlet</display-name>
+    <servlet-name>searchEmployeeServlet</servlet-name>
+    <servlet-class>com.revature.servlet.manager.searchEmployeeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>searchEmployeeServlet</servlet-name>
+    <url-pattern>/searchEmployeeServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -12,7 +12,7 @@ body {
     background-color: #F9FAF8;
 }
 
-#loginTitle, #employeeHomePage, #welcomeMsg {
+#loginTitle, #employeeHomePage, #managerHomePage, #welcomeMsg {
 	font-family: 'Dosis', sans-serif;
 }
  
