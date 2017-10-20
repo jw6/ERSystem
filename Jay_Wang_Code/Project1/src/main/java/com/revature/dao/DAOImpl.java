@@ -122,35 +122,32 @@ public class DAOImpl implements DAO{
 
 	@Override
 	public List<ERSUser> getAllEmployees() {
-		List<Reimbursement> rbList = new ArrayList<>();
-		Reimbursement rb = new Reimbursement();
+		List<ERSUser> employees = new ArrayList<>();
+		ERSUser temp = null;
 		
 		try(Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
-			String sql = "SELECT * FROM reimbursement";
-			
+			String sql = "SELECT * FROM ERS_USER WHERE rt_id = 1";
 			PreparedStatement ps = conn.prepareStatement(sql);
-			
 			ResultSet rs = ps.executeQuery();
-			
+
 			while(rs.next()) {
-				rb.setRbId(rs.getInt(1));
-				rb.setErsId(rs.getInt(2));
-				rb.setStId(rs.getInt(3));
-				rb.setManagerId(rs.getInt(4));
-				rb.setRbtId(rs.getInt(5));
-				rb.setRbAmount(rs.getDouble(6));
-				rb.setRbSubmitted(rs.getString(7));
-				rb.setRbResolved(rs.getString(8));
-				rb.setDescription(rs.getString(9));
-				
-				rbList.add(rb);
+				temp = new ERSUser();
+				temp.setErsId(rs.getInt(1));
+				temp.setFirstName(rs.getString(2));
+				temp.setLastName(rs.getString(3));
+				temp.setUsername(rs.getString(4));
+				temp.setPassword(rs.getString(5));
+				temp.setRtId(rs.getInt(6));
+				temp.setEmail(rs.getString(7));
+				employees.add(temp);
 			}
+			return employees;
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		}
-		
-		return null;
 	}
 
 	@Override

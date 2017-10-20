@@ -10,7 +10,7 @@ function loadNavbar() {
 			document.getElementById('managerNavbar').innerHTML = xhr.responseText;
 			document.getElementById('managerHomePage').addEventListener('click', managerHomeView, false);
 //			document.getElementById('viewAllRbs').addEventListener('click', loadAllReimbursementsView, false);
-//			document.getElementById('viewAllEmployees').addEventListener('click', loadAllEmployeesView, false);
+			document.getElementById('viewAllEmployees').addEventListener('click', loadAllEmployeesView, false);
 			document.getElementById('searchByEmployee').addEventListener('click', loadSearchByEmployee, false);
 //			document.getElementById('allPending').addEventListener('click', loadAllPendingView, false);
 //			document.getElementById('allResolved').addEventListener('click', loadAllResolvedView, false);
@@ -21,17 +21,57 @@ function loadNavbar() {
 	xhr.send();
 }
 
-//function loadAllEmployeesView() {
-//	var xhr = new XMLHttpRequest();
-//	xhr.onreadystatechange = function(){
-//		if(xhr.readyState == 4 && xhr.status == 200){
-//			document.getElementById('managerHomeView').innerHTML = xhr.responseText;
-//			getAllEmployees();
-//		}
-//	}
-//	xhr.open('GET', 'viewAllEmployees', true);
-//	xhr.send();
-//}
+function loadAllEmployeesView() {
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			document.getElementById('managerHomeView').innerHTML = xhr.responseText;
+			getAllEmployees();
+		}
+	}
+	xhr.open('GET', 'viewAllEmployees', true);
+	xhr.send();
+}
+
+function getAllEmployees(){
+	var xhr = new XMLHttpRequest();
+	var employees = null;
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			employees = JSON.parse(xhr.responseText);
+			var eId, eFn, eLn, eUn, eEmail;
+			var row;
+			for(var i=0; i < employees.length; i++){
+				row = document.createElement('TR');
+
+				eId = document.createElement('TD');
+				eId.innerText = employees[i].ersId;
+				row.appendChild(eId);
+
+				eFn = document.createElement('TD');
+				eFn.innerText = employees[i].firstName;
+				row.appendChild(eFn);
+
+				eLn = document.createElement('TD');
+				eLn.innerText = employees[i].lastName;
+				row.appendChild(eLn);
+
+				eUn = document.createElement('TD');
+				eUn.innerText = employees[i].username;
+				row.appendChild(eUn);
+
+				eEmail = document.createElement('TD');
+				eEmail.innerText = employees[i].email;
+				row.appendChild(eEmail);
+
+				document.getElementById('EmployeeList').appendChild(row);
+				row.setAttribute('class', 'emp');
+			}
+		}
+	}
+	xhr.open('GET', 'getAllEmployees', true);
+	xhr.send();
+}
 
 function loadSearchByEmployee(){
 	var xhr = new XMLHttpRequest();

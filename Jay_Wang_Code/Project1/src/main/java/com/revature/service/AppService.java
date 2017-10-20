@@ -43,5 +43,10 @@ public class AppService {
 	public List<ERSUser> getAllManagers() {
 		return dao.getAllManagers();
 	}
+
+	public List<ERSUser> getAllEmployees() {
+		// TODO Auto-generated method stub
+		return dao.getAllEmployees();
+	}
 	
 }

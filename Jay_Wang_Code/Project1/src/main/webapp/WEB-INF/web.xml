@@ -189,4 +189,24 @@
     <servlet-name>getAllManagersServlet</servlet-name>
     <url-pattern>/getAllManagersServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>viewAllEmployessServlet</display-name>
+    <servlet-name>viewAllEmployessServlet</servlet-name>
+    <servlet-class>com.revature.servlet.manager.viewAllEmployessServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>viewAllEmployessServlet</servlet-name>
+    <url-pattern>/viewAllEmployessServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>getAllEmployeesServlet</display-name>
+    <servlet-name>getAllEmployeesServlet</servlet-name>
+    <servlet-class>com.revature.servlet.manager.getAllEmployeesServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>getAllEmployeesServlet</servlet-name>
+    <url-pattern>/getAllEmployeesServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
