@@ -66,7 +66,7 @@ function employeeInfoView() {
 			document.getElementById("ersUser").innerHTML = employee.username;
 			document.getElementById("ersEmail").innerHTML = employee.email;
 			
-			document.getElementById("editEmployeeInfoBtn").addEventListener('click', editEmployeeInfo, false);
+//			document.getElementById("editEmployeeInfoBtn").addEventListener('click', editEmployeeInfo, false);
 		}
 	}
 	xhr.open('GET', 'employeeInfoView', true);
@@ -85,14 +85,7 @@ function editEmployeeInfo() {
 			document.getElementById("firstName").placeholder = employee.firstName;
 			document.getElementById("lastName").placeholder = employee.lastName;
 			document.getElementById("username").placeholder = employee.username;
-			
-			var hide = "";
-			
-			for(var i = 0; i < employee.password.length; i++) {
-				hide += "*";
-			}
-			
-			document.getElementById("password").placeholder = hide;
+			document.getElementById("password").placeholder = employee.password;
 			document.getElementById("email").placeholder = employee.email;
 			document.getElementById("confirmBtn").addEventListener('click', updateEmployeeInfo, false); 
 		}
