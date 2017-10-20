@@ -269,4 +269,24 @@
     <servlet-name>processDenialServlet</servlet-name>
     <url-pattern>/processDenialServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>viewAllResolvedServlet</display-name>
+    <servlet-name>viewAllResolvedServlet</servlet-name>
+    <servlet-class>com.revature.servlet.manager.viewAllResolvedServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>viewAllResolvedServlet</servlet-name>
+    <url-pattern>/viewAllResolvedServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>getResolvedRequestServlet</display-name>
+    <servlet-name>getResolvedRequestServlet</servlet-name>
+    <servlet-class>com.revature.servlet.manager.getResolvedRequestServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>getResolvedRequestServlet</servlet-name>
+    <url-pattern>/getResolvedRequestServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

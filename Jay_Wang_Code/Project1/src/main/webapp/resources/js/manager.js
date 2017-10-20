@@ -13,13 +13,107 @@ function loadNavbar() {
 			document.getElementById('viewAllEmployees').addEventListener('click', loadAllEmployeesView, false);
 			document.getElementById('searchByEmployee').addEventListener('click', loadSearchByEmployee, false);
 			document.getElementById('allPending').addEventListener('click', loadAllPendingView, false);
-//			document.getElementById('allResolved').addEventListener('click', loadAllResolvedView, false);
+			document.getElementById('allResolved').addEventListener('click', viewResolvedRequest, false);
 		
 		}
 	}
 	xhr.open('GET', 'loadManagerNavbar', true);
 	xhr.send();
 }
+
+function viewResolvedRequest(){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			document.getElementById('managerHomeView').innerHTML = xhr.responseText;
+			getResolved();
+		}
+	}
+	xhr.open('GET', 'viewAllResolved', true);
+	xhr.send();
+}
+
+function getResolved(){
+	var xhr = new XMLHttpRequest();
+	var resolved = null;
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			resolved = JSON.parse(xhr.responseText);
+			var row = null;
+			var rbId, rbAmount, rbReceipt, ersId, status, managerId, rbType, rbSubmit, rbResolve, rbDescription;
+			for(var i=0; i < resolved.length; i++){
+				row = document.createElement('TR');
+
+				rbId = document.createElement('TD');
+				rbId.innerText = resolved[i].rbId;
+				row.appendChild(rbId);
+
+				getEmployeeName(resolved[i].ersId, row);
+
+				rbAmount = document.createElement('TD');
+				rbAmount.innerText = resolved[i].rbAmount;
+				row.appendChild(rbAmount);
+
+				rbType = document.createElement('TD');
+				switch(resolved[i].rbtId){
+					case 1:
+						rbType.innerText = "Fee";
+						break;
+					case 2:
+						rbType.innerText = "Hotel";
+						break;
+					case 3:
+						rbType.innerText = "Food";
+						break;
+					case 4:
+						rbType.innerText = "Travel";
+						break;
+					default:
+						rbType.innerText = "N/A";
+						break;
+				}
+				row.appendChild(rbType);
+
+				status = document.createElement('TD');
+				switch(resolved[i].stId){
+					case 2:
+						status.innerText = "Approved";
+						break;
+					case 3:
+						status.innerText = "Denied";
+						break;
+					default:
+						rbType.innerText = "N/A";
+						break;
+				}
+				row.appendChild(status);
+
+				getManager(resolved[i].managerId, row);
+
+				rbSubmit = document.createElement('TD');
+				rbSubmit.innerText = resolved[i].rbSubmitted;
+				row.appendChild(rbSubmit);
+
+				rbResolve = document.createElement('TD');
+				rbResolve.innerText = resolved[i].rbResolved;
+				row.appendChild(rbResolve);
+
+				rbReceipt = document.createElement('TD');
+				rbReceipt.innerText = resolved[i].rbReceipt;
+				row.appendChild(rbReceipt);
+
+				rbDescription = document.createElement('TD');
+				rbDescription.innerText = resolved[i].description;
+				row.appendChild(rbDescription);
+
+				document.getElementById('allResolvedEntries').appendChild(row);
+			}
+		}
+	}
+	xhr.open('GET', 'getResolvedRequest', true);
+	xhr.send();
+}
+
 
 function loadAllPendingView(){
 	var xhr = new XMLHttpRequest();
