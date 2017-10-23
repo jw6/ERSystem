@@ -27,24 +27,23 @@ public class MainClass {
 		// hibernateReadAccount();
 		// getVsLoad();
 		BankUser user = null;
-		
+
 		user = new BankDaoImpl().getBankUserById(user);
-		
+//		System.out.println(user.toString());
 		Set<BankAccount> account = user.getBankAccount();
 		
 		for (BankAccount acc : account) {
 			
 			Set<BankTransaction> trans = acc.getBankTx();
-
+//			System.out.println(trans.toString());
 			for(BankTransaction tr : trans) {
 				
 				BankTransactionType type = tr.getBankTxType();
 				System.out.println(type);
-			}
-			
-			
+			}	
 		}
-
+		
+		System.err.println(user.toString());
 	}
 
 	public static void hibernateReadExample() {

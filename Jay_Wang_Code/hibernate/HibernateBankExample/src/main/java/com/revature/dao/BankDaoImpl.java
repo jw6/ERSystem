@@ -19,7 +19,7 @@ public class BankDaoImpl implements Dao {
 		 */
 		Session session = HibernateConnectionUtil.getSession();
 
-		BankUser returnedUser = (BankUser) session.get(BankUser.class, 30);
+		BankUser dbUser = (BankUser) session.get(BankUser.class, 1);
 
 		/*
 		 * calling a 2nd time with the same primary key will result in pulling the
@@ -28,7 +28,7 @@ public class BankDaoImpl implements Dao {
 		 */
 		session.close();
 
-		return returnedUser;
+		return dbUser;
 	}
 
 	public void createUser(BankUser user) {
@@ -53,7 +53,7 @@ public class BankDaoImpl implements Dao {
 		// Hibernate will compare the Java Object to the Table Record and update the
 		// table record
 		// if the two don't match
-		user.setFirstName("I HAVE CHANGED!");
+		user.setFirstName("First name changed!");
 
 		// commit
 		tx.commit();
