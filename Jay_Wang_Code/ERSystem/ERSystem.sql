@@ -120,7 +120,7 @@ INSERT INTO status_type (st_name) VALUES ('Denied');
 /
 commit;
 /
-INSERT INTO ers_user (ers_fn, ers_ln, ers_username, ers_password, ers_email) VALUES ('Dinash', 'Chugtai', 'Dinash', 'd123', 'jaywang007@yahoo.com');
+INSERT INTO ers_user (ers_fn, ers_ln, ers_username, ers_password, ers_email) VALUES ('Richard', 'Hendric', 'richard', 'r123', 'jaywang007@yahoo.com');
 INSERT INTO ers_user (ers_fn, ers_ln, ers_username, ers_password, rt_id, ers_email) VALUES ('Jared', 'Dunn', 'Jared', 'j123', 2, 'jaywang007@yahoo.com');
 commit;
 / 
@@ -141,15 +141,20 @@ INSERT INTO reimbursement ( ers_id, st_id, manager_id, rbt_id, rb_amount, rb_sub
                     VALUES( 1, 1, 2, 1, 232.2, current_timestamp, null, 'AWS bill', TO_BLOB(null) );
                     
 INSERT INTO reimbursement ( ers_id, st_id, manager_id, rbt_id, rb_amount, rb_submitted, rb_resolved, rb_description, rb_receipt) 
-                    VALUES( 1, 2, 2, 4, 391.2, current_timestamp, null, 'Flight ticket', TO_BLOB(null) );
+                    VALUES( 1, 1, 2, 2, 102.2, current_timestamp, null, 'Hotel cost', TO_BLOB(null) );
             
 INSERT INTO reimbursement ( ers_id, st_id, manager_id, rbt_id, rb_amount, rb_submitted, rb_resolved, rb_description, rb_receipt) 
-                    VALUES( 1, 3, 2, 4, 121.2, current_timestamp, null, 'Flight ticket', TO_BLOB(null) );
+                    VALUES( 21, 1, 2, 1, 511.12, current_timestamp, null, 'aws bill', TO_BLOB(null) );
+                    
+INSERT INTO reimbursement ( ers_id, st_id, manager_id, rbt_id, rb_amount, rb_submitted, rb_resolved, rb_description, rb_receipt) 
+                    VALUES( 21, 1, 2, 1, 211.12, current_timestamp, null, 'aws bill', TO_BLOB(null) );
+INSERT INTO reimbursement ( ers_id, st_id, manager_id, rbt_id, rb_amount, rb_submitted, rb_resolved, rb_description, rb_receipt) 
+                    VALUES( 22, 1, 2, 1, 19.12, current_timestamp, null, 'aws bill', TO_BLOB(null) );                   
                     
 SELECT * FROM ers_user where ers_id = 1;
 
-UPDATE reimbursement SET rb_resolved = current_timestamp, st_id = 2 WHERE rb_id = 1;
-UPDATE reimbursement SET rb_resolved = current_timestamp, st_id = 2 WHERE rb_id = 2;
+UPDATE reimbursement SET rb_resolved = current_timestamp, st_id = 3 WHERE rb_id = 7;
+UPDATE reimbursement SET rb_resolved = current_timestamp, st_id = 2 WHERE rb_id = 8;
 UPDATE reimbursement SET rb_resolved = current_timestamp, st_id = 3, manager_id = 2 WHERE rb_id = 3;
 
 UPDATE reimbursement SET st_id = 1 WHERE rb_id = 4;

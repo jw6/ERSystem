@@ -33,11 +33,11 @@ public class MainClass {
 		Set<BankAccount> account = user.getBankAccount();
 		
 		for (BankAccount acc : account) {
-			
+//			System.out.println(acc);
 			Set<BankTransaction> trans = acc.getBankTx();
 //			System.out.println(trans.toString());
 			for(BankTransaction tr : trans) {
-				
+//				System.out.println(tr);
 				BankTransactionType type = tr.getBankTxType();
 				System.out.println(type);
 			}	
@@ -99,5 +99,4 @@ public class MainClass {
 		System.out.println(user.getUsername());
 		System.out.println(user.getClass());
 	}
-
 }

@@ -14,6 +14,12 @@ import javax.persistence.Table;
 @Table(name = "BANK_TX")
 public class BankTransaction implements Serializable {
 
+	@Override
+	public String toString() {
+		return "BankTransaction [txId=" + txId + ", txAmount=" + txAmount + ", txTimestamp=" + txTimestamp
+				+ ", bankTxType=" + bankTxType + ", bankAccount=" + bankAccount + "]";
+	}
+
 	/**
 	 * 
 	 */
