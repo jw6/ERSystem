@@ -153,6 +153,75 @@
                     <mainClass>org.test.int1.Main</mainClass>
                 </configuration>
             </plugin>
+            
+                    <!-- Manually added below plugins -->
+        
+        <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>0.0.29</version>
+                <configuration>
+                    <nodeVersion>v5.10.1</nodeVersion>
+                    <npmVersion>3.8.6</npmVersion>
+                    <installDirectory>target</installDirectory>
+                    <workingDirectory>${project.basedir}/src/main/webapp/WEB-INF/angular</workingDirectory>
+                </configuration>
+                <executions>
+                    <!-- install node & npm -->
+                    <execution>
+                        <id>install node and npm</id>
+                        <goals>
+                            <goal>install-node-and-npm</goal>
+                        </goals>
+                    </execution>
+
+                    <!--npm install -->
+                    <execution>
+                        <id>npm install</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>install</arguments>
+                        </configuration>
+                    </execution>
+
+                    <!-- npm run build -->
+                    <execution>
+                        <id>npm run</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>run</arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>npm build</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>build</arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <!-- 「mvn tomcat:run」 -->
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat8-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <uriEncoding>UTF-8</uriEncoding>
+                    <path>/MaJaJa</path>
+                    <port>8085</port>
+                </configuration>
+            </plugin>
+
+        <!-- Plugins ended -->
+            
         </plugins>
+
     </build>
 </project>
